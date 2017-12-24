@@ -1,13 +1,13 @@
 package com.rumofuture.nemo.util;
 
-public enum ResponseEnum {
+public enum RespConst {
     SUCCESS(200, "success"),
     SYSTEM_ERROR(500, "system error");
 
     private int statusCode;
     private String message;
 
-    ResponseEnum(int statusCode, String message) {
+    RespConst(int statusCode, String message) {
         this.statusCode = statusCode;
         this.message = message;
     }

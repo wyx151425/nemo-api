@@ -1,4 +1,4 @@
-package com.rumofuture.nemo.model.repository;
+package com.rumofuture.nemo.repository;
 
 import com.rumofuture.nemo.model.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;

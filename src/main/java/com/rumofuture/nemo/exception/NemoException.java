@@ -1,16 +1,16 @@
 package com.rumofuture.nemo.exception;
 
-import com.rumofuture.nemo.util.ResponseEnum;
+import com.rumofuture.nemo.util.RespConst;
 
 public class NemoException extends RuntimeException {
 
-    private ResponseEnum response;
+    private RespConst response;
 
-    public NemoException(ResponseEnum response) {
+    public NemoException(RespConst response) {
         this.response = response;
     }
 
-    public ResponseEnum getResponse() {
+    public RespConst getResponse() {
         return response;
     }
 }
