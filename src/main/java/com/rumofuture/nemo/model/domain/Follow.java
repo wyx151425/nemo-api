@@ -1,10 +1,17 @@
 package com.rumofuture.nemo.model.domain;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * Created by WangZhenqi on 2017/4/18.
  */
 
-public class Follow {
+public class Follow implements Serializable {
+
+    private Integer id;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 
     private User author;
     private User follower;

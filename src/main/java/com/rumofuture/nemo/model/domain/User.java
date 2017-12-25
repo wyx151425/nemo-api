@@ -1,5 +1,9 @@
 package com.rumofuture.nemo.model.domain;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -11,13 +15,29 @@ public class User implements Serializable {
 
     private Integer id;  // 主键
 
+    private String token;
+
+    public interface Register {
+    }
+
+    public interface Login {
+    }
+
+    @NotBlank(groups = {User.Register.class})
+    @Length(min = 2, max = 3)
     private String name;  // 姓名
+    @NotBlank(groups = {User.Register.class, User.Login.class})
+    @Length(min = 11, max = 11)
+    @Pattern(regexp = "((13\\d)|(15\\d)|(17\\d)|(18\\d))\\d{8}")
     private String mobilePhoneNumber;  // 手机号
-    private String email;  // 邮箱
+    @NotBlank(groups = {User.Register.class, User.Login.class})
+    @Length(min = 6, max = 32)
     private String password;  // 密码
+
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
 
+    private String email;  // 邮箱
     private String motto;  // 座右铭
     private String profile;  // 简介
     private String profession;  // 职业

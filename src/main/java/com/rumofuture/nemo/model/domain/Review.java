@@ -1,10 +1,17 @@
 package com.rumofuture.nemo.model.domain;
 
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
  * Created by WangZhenqi on 2017/4/18.
  */
 
-public class Review {
+public class Review implements Serializable {
+
+    private Integer id;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 
     private Book book;
     private User reviewer;

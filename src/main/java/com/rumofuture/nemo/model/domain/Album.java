@@ -1,6 +1,7 @@
 package com.rumofuture.nemo.model.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Created by WangZhenqi on 2017/8/31.
@@ -8,7 +9,9 @@ import java.io.Serializable;
 
 public class Album implements Serializable {
 
-
+    private Integer id;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 
     private Integer imageId;  // 专辑封面图片id
 

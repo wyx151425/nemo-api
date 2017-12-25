@@ -1,22 +1,28 @@
 package com.rumofuture.nemo.util;
 
 public enum RespConst {
+
     SUCCESS(200, "success"),
-    SYSTEM_ERROR(500, "system error");
+    STATUS_ERROR(300, "statusError"),
+    SYSTEM_ERROR(500, "systemError"),
+    PARAM_ERROR(601, "paramError"),
+    USER_UNREGISTER(9000, "userUnregister"),
+    USER_LOGIN_TIMEOUT(9001, "userLoginTimeout"),
+    USER_LOGIN_PASSWORD_ERROR(9002, "userLoginPasswordError");
 
     private int statusCode;
-    private String message;
+    private String value;
 
-    RespConst(int statusCode, String message) {
+    RespConst(int statusCode, String value) {
         this.statusCode = statusCode;
-        this.message = message;
+        this.value = value;
     }
 
-    public int getStatusCode() {
+    public int statusCode() {
         return statusCode;
     }
 
-    public String getMessage() {
-        return message;
+    public String value() {
+        return value;
     }
 }

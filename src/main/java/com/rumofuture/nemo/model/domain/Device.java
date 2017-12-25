@@ -1,10 +1,12 @@
 package com.rumofuture.nemo.model.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by WangZhenqi on 2017/9/21.
  */
 
-public class Device {
+public class Device implements Serializable {
 
     private User user;
 

@@ -1,4 +1,4 @@
-package com.rumofuture.nemo.exception;
+package com.rumofuture.nemo.context.exception;
 
 import com.rumofuture.nemo.util.RespConst;
 

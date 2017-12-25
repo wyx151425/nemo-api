@@ -16,9 +16,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private StringRedisTemplate redisTemplate;
-
     @Override
     public User userSignUp(User user) {
         return userRepository.save(user);

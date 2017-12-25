@@ -1,40 +1,48 @@
 package com.rumofuture.nemo.controller;
 
+import com.rumofuture.nemo.context.exception.NemoException;
 import com.rumofuture.nemo.model.domain.User;
 import com.rumofuture.nemo.model.dto.Response;
 import com.rumofuture.nemo.service.UserService;
+import com.rumofuture.nemo.util.NemoConst;
+import com.rumofuture.nemo.util.RespConst;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
-@RequestMapping(value = "users")
-public class UserController {
+@RequestMapping(value = "user")
+public class UserController extends NemoController {
+
+    private static final Log log = LogFactory.getLog(UserController.class);
 
     @Autowired
     private UserService userService;
 
-    @PostMapping(value = "/signUp")
-    public Response<?> actionUserSignUp(@RequestBody User user) {
-        User resultUser = userService.userSignUp(user);
-        if (null != resultUser.getId()) {
-            return new Response<>(200, "success");
-        }
-        return new Response<>(200, "failed");
+    @PostMapping(value = "register")
+    public Response<String> actionRegister(@Validated({User.Register.class}) @RequestBody User user, BindingResult result) {
+        bindingResultInspect(result);
+        userService.register(user);
+        return new Response<>(RespConst.SUCCESS);
     }
 
     @PostMapping(value = "login")
-    public Response<?> actionLogin(@RequestBody User user) {
-        User resultUser = userService.userLogin(user);
-        String token = userService.createToken(resultUser.getId());
-        Map<String, Object> map = new HashMap<>();
-        map.put("user", resultUser);
-        map.put("token", token);
-        return new Response<>(200, map);
+    public Response<?> actionLogin(@Validated({User.Login.class}) @RequestBody User requestUser, BindingResult result) {
+        bindingResultInspect(result);
+        try {
+            User user = userService.login(requestUser, getHttpRequest().getHeader(NemoConst.RequestHeader.CLIENT_TYPE));
+            return new Response<>(user);
+        } catch (NemoException e) {
+            throw e;
+        } catch (Exception e) {
+            log.error(e);
+            throw new NemoException(RespConst.SYSTEM_ERROR);
+        }
     }
 }
