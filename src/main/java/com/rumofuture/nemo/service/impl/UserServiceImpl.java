@@ -7,7 +7,6 @@ import com.rumofuture.nemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service(value = "userService")
@@ -17,12 +16,12 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User userSignUp(User user) {
+    public User register(User user) {
         return userRepository.save(user);
     }
 
     @Override
-    public User userLogin(User user) {
+    public User login(User user) {
         return userRepository.findByMobilePhoneNumber(user.getMobilePhoneNumber());
     }
 
