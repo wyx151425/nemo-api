@@ -1,6 +1,6 @@
 package com.rumofuture.nemo.context.exception;
 
-import com.rumofuture.nemo.util.RespConst;
+import com.rumofuture.nemo.util.constant.RespConst;
 
 public class NemoException extends RuntimeException {
 

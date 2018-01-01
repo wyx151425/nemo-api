@@ -1,4 +1,4 @@
-package com.rumofuture.nemo.util;
+package com.rumofuture.nemo.util.cache;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

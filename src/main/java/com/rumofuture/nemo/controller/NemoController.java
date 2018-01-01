@@ -2,7 +2,7 @@ package com.rumofuture.nemo.controller;
 
 import com.rumofuture.nemo.context.exception.NemoJSRException;
 import com.rumofuture.nemo.model.domain.User;
-import com.rumofuture.nemo.util.NemoConst;
+import com.rumofuture.nemo.util.constant.NemoConst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,8 @@ public class NemoController {
     @Autowired
     private HttpServletRequest request;
 
-    public Integer getUserId() {
-        return (Integer) request.getAttribute(NemoConst.USER_ID);
-    }
-
-    public User getCurrentUser() {
-        return new User();
+    public User getUser() {
+        return (User) request.getAttribute(NemoConst.USER);
     }
 
     public HttpServletRequest getHttpRequest() {

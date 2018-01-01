@@ -7,5 +7,4 @@ public interface UserRepository {
     boolean update(User user);
     boolean delete(Integer id);
     User findByMobilePhoneNumber(String mobilePhoneNumber);
-
 }

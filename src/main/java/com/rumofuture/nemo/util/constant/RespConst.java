@@ -1,4 +1,4 @@
-package com.rumofuture.nemo.util;
+package com.rumofuture.nemo.util.constant;
 
 public enum RespConst {
 

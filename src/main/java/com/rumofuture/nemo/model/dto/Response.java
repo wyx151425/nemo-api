@@ -1,6 +1,6 @@
 package com.rumofuture.nemo.model.dto;
 
-import com.rumofuture.nemo.util.RespConst;
+import com.rumofuture.nemo.util.constant.RespConst;
 
 public class Response<T> {
     private int statusCode;

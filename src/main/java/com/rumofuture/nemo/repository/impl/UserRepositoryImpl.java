@@ -3,7 +3,7 @@ package com.rumofuture.nemo.repository.impl;
 import com.rumofuture.nemo.model.dao.UserDao;
 import com.rumofuture.nemo.model.domain.User;
 import com.rumofuture.nemo.repository.UserRepository;
-import com.rumofuture.nemo.util.NemoCache;
+import com.rumofuture.nemo.util.cache.NemoCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

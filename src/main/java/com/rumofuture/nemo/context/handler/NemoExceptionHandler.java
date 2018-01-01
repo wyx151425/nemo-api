@@ -3,7 +3,7 @@ package com.rumofuture.nemo.context.handler;
 import com.rumofuture.nemo.context.exception.NemoException;
 import com.rumofuture.nemo.context.exception.NemoJSRException;
 import com.rumofuture.nemo.model.dto.Response;
-import com.rumofuture.nemo.util.RespConst;
+import com.rumofuture.nemo.util.constant.RespConst;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
