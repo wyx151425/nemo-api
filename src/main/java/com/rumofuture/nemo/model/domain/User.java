@@ -1,21 +1,16 @@
 package com.rumofuture.nemo.model.domain;
 
+import com.rumofuture.nemo.model.entity.NemoEntity;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * Created by WangZhenqi on 2016/12/24.
  */
 
-public class User implements Serializable {
-
-    private Integer id;  // 主键
-
-    private String token;
+public class User extends NemoEntity {
 
     public interface Register {
     }
@@ -34,8 +29,8 @@ public class User implements Serializable {
     @Length(min = 6, max = 32)
     private String password;  // 密码
 
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
+    private String token;
+    private Integer status;  // 状态：0-禁用用户/1-普通用户/2-普通可发布漫画用户
 
     private String email;  // 邮箱
     private String motto;  // 座右铭
@@ -55,16 +50,6 @@ public class User implements Serializable {
     private String avatarUrl;  // 头像
     private String portraitUrl;  // 个人肖像
 
-    private Boolean authorize;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -81,14 +66,6 @@ public class User implements Serializable {
         this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -97,24 +74,28 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public LocalDateTime getCreateAt() {
-        return createAt;
+    public String getToken() {
+        return token;
     }
 
-    public void setCreateAt(LocalDateTime createAt) {
-        this.createAt = createAt;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public LocalDateTime getUpdateAt() {
-        return updateAt;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setUpdateAt(LocalDateTime updateAt) {
-        this.updateAt = updateAt;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public Boolean getAuthorize() {
-        return authorize;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getMotto() {
@@ -219,13 +200,5 @@ public class User implements Serializable {
 
     public void setPortraitUrl(String portraitUrl) {
         this.portraitUrl = portraitUrl;
-    }
-
-    public Boolean isAuthorize() {
-        return authorize;
-    }
-
-    public void setAuthorize(Boolean authorize) {
-        this.authorize = authorize;
     }
 }

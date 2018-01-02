@@ -2,9 +2,8 @@ package com.rumofuture.nemo.controller;
 
 import com.rumofuture.nemo.context.exception.NemoException;
 import com.rumofuture.nemo.model.domain.User;
-import com.rumofuture.nemo.model.dto.Response;
+import com.rumofuture.nemo.model.entity.Response;
 import com.rumofuture.nemo.service.UserService;
-import com.rumofuture.nemo.util.constant.NemoConst;
 import com.rumofuture.nemo.util.constant.RespConst;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -36,7 +35,7 @@ public class UserController extends NemoController {
     public Response<?> actionLogin(@Validated({User.Login.class}) @RequestBody User requestUser, BindingResult result) {
         bindingResultInspect(result);
         try {
-            User user = userService.login(requestUser, getHttpRequest().getHeader(NemoConst.RequestHeader.APP_TYPE));
+            User user = userService.login(requestUser);
             return new Response<>(user);
         } catch (NemoException e) {
             throw e;

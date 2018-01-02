@@ -1,4 +1,4 @@
-package com.rumofuture.nemo.model.domain;
+package com.rumofuture.nemo.model.entity;
 
 public class Token {
     private Integer id;

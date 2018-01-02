@@ -1,7 +1,7 @@
 package com.rumofuture.nemo.context.interceptor;
 
 import com.alibaba.fastjson.JSON;
-import com.rumofuture.nemo.model.dto.Response;
+import com.rumofuture.nemo.model.entity.Response;
 import com.rumofuture.nemo.util.constant.NemoConst;
 import com.rumofuture.nemo.util.constant.RespConst;
 import org.slf4j.Logger;

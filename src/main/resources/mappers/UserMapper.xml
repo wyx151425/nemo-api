@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rumofuture.rumo.repository.dao.UserDao">
+<mapper namespace="com.rumofuture.nemo.repository.mapper">
 
-    <resultMap id="userMap" type="com.rumofuture.rumo.model.domain.User">
+    <resultMap id="userMap" type="com.rumofuture.nemo.model.domain.User">
         <id column="id" property="id"/>
-        <result column="create_time" property="createTime"/>
-        <result column="update_time" property="updateTime"/>
+        <result column="object_id" property="objectId"/>
         <result column="name" property="name"/>
+        <result column="status" property="status"/>
         <result column="mobile_phone_number" property="mobilePhoneNumber"/>
         <result column="password" property="password"/>
-        <result column="org_id" property="orgId"/>
-        <result column="org_code" property="orgCode"/>
-        <result column="org_name" property="orgName"/>
+        <result column="create_at" property="createAt"/>
+        <result column="update_at" property="updateAt"/>
+        <result column="email" property="email"/>
+        <result column="motto" property="motto"/>
+        <result column="profile" property="profile"/>
+        <result column="profession" property="profession"/>
+        <result column="location" property="location"/>
+        <result column="gender" property="gender"/>
+        <result column="birthday" property="birthday"/>
+        <result column="age" property="age"/>
+        <result column="follow_total" property="followTotal"/>
+        <result column="follower_total" property="followerTotal"/>
+        <result column="favorite_total" property="favoriteTotal"/>
+        <result column="book_total" property="bookTotal"/>
+        <result column="avatar_url" property="avatarUrl"/>
+        <result column="portrait_url" property="portraitUrl"/>
     </resultMap>
 
     <!--保存-->

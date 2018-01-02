@@ -1,9 +1,11 @@
 package com.rumofuture.nemo.service.impl;
 
-import com.rumofuture.nemo.model.domain.Token;
+import com.rumofuture.nemo.context.exception.NemoException;
+import com.rumofuture.nemo.model.entity.Token;
 import com.rumofuture.nemo.model.domain.User;
 import com.rumofuture.nemo.repository.UserRepository;
 import com.rumofuture.nemo.service.UserService;
+import com.rumofuture.nemo.util.constant.RespConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,7 +19,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(User user) {
-        return userRepository.save(user);
+        User targetUser = userRepository.findByMobilePhoneNumber(user.getMobilePhoneNumber());
+        if (null == targetUser) {
+            userRepository.save(user);
+            return user;
+        } else {
+            throw new NemoException(RespConst.STATUS_ERROR);
+        }
     }
 
     @Override

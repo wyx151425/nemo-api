@@ -1,4 +1,4 @@
-package com.rumofuture.nemo.model.dto;
+package com.rumofuture.nemo.model.entity;
 
 import com.rumofuture.nemo.util.constant.RespConst;
 
