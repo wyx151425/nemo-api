@@ -18,6 +18,11 @@ public class NemoConst {
         public static final String APP_TYPE = "appType";
     }
 
+    public static class Language {
+        public static final String CHINESE = "Chinese";
+        public static final String ENGLISH = "English";
+    }
+
     public static class Cache {
         public static final String SEPARATOR = ":";
     }

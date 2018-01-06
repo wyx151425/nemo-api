@@ -1,18 +1,18 @@
 package com.rumofuture.nemo.repository;
 
+import com.rumofuture.nemo.model.domain.User;
 import com.rumofuture.nemo.model.entity.PageModel;
-import com.rumofuture.nemo.repository.cache.NemoCache;
 import com.rumofuture.nemo.repository.cache.UserCache;
 import com.rumofuture.nemo.repository.mapper.UserMapper;
-import com.rumofuture.nemo.model.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author WangZhenqi
+ */
 @Repository(value = "userDao")
 public class UserRepository implements UserDao {
 
@@ -24,7 +24,7 @@ public class UserRepository implements UserDao {
 
     @Override
     public User findByMobilePhoneNumber(String mobilePhoneNumber) {
-        return null;
+        return userMapper.selectByMobilePhoneNumber(mobilePhoneNumber);
     }
 
     @Override

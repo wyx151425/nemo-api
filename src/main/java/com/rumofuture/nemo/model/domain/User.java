@@ -32,8 +32,7 @@ public class User extends NemoEntity {
     private String token;
     private Integer status;  // 状态：0-禁用用户/1-普通用户/2-普通可发布漫画用户
 
-    // 邮箱
-    private String email;
+    private String email;  // 邮箱
     private String motto;  // 座右铭
     private String profile;  // 简介
     private String profession;  // 职业

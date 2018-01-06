@@ -1,25 +1,28 @@
 package com.rumofuture.nemo.model.entity;
 
-import com.rumofuture.nemo.util.constant.RespConst;
+import com.rumofuture.nemo.util.constant.RespStatus;
 
 public class Response<T> {
+
     private int statusCode;
-    private String message;
     private T data;
 
+    public Response() {
+    }
+
+    public Response(int statusCode) {
+        this.statusCode = statusCode;
+        this.data = null;
+    }
+
     public Response(T data) {
-        this.statusCode = RespConst.SUCCESS.statusCode();
+        this.statusCode = RespStatus.SUCCESS;
         this.data = data;
     }
 
-    public Response(int statusCode, String message) {
+    public Response(int statusCode, T data) {
         this.statusCode = statusCode;
-        this.message = message;
-    }
-
-    public Response(RespConst respConst) {
-        this.statusCode = respConst.statusCode();
-        this.message = respConst.value();
+        this.data = data;
     }
 
     public int getStatusCode() {
@@ -28,14 +31,6 @@ public class Response<T> {
 
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public T getData() {

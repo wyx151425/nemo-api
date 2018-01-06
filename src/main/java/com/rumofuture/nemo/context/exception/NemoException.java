@@ -1,16 +1,18 @@
 package com.rumofuture.nemo.context.exception;
 
-import com.rumofuture.nemo.util.constant.RespConst;
-
 public class NemoException extends RuntimeException {
 
-    private RespConst response;
+    private int statusCode;
 
-    public NemoException(RespConst response) {
-        this.response = response;
+    public NemoException(int statusCode) {
+        this.statusCode = statusCode;
     }
 
-    public RespConst getResponse() {
-        return response;
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 }

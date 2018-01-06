@@ -3,7 +3,7 @@ package com.rumofuture.nemo.context.interceptor;
 import com.alibaba.fastjson.JSON;
 import com.rumofuture.nemo.model.entity.Response;
 import com.rumofuture.nemo.util.constant.NemoConst;
-import com.rumofuture.nemo.util.constant.RespConst;
+import com.rumofuture.nemo.util.constant.RespStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.Nullable;
@@ -40,7 +40,7 @@ public class NemoInterceptor implements HandlerInterceptor {
         String token = request.getHeader(NemoConst.TOKEN);
         if (null == token) {
             PrintWriter out = response.getWriter();
-            out.print(JSON.toJSONString(new Response<String>(RespConst.USER_LOGIN_TIMEOUT)));
+            out.print(JSON.toJSONString(new Response<String>(RespStatus.USER_LOGIN_TIMEOUT)));
             out.flush();
             return false;
         } else {

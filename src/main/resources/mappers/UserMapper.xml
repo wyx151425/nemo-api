@@ -30,8 +30,8 @@
 
     <!--保存-->
     <insert id="insert" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user(name, mobile_phone_number, password)
-        VALUES(#{name}, #{mobilePhoneNumber}, #{password})
+        INSERT INTO user(object_id, name, status, mobile_phone_number, password, create_at, update_at)
+        VALUES(#{objectId}, #{name}, #{status}, #{mobilePhoneNumber}, #{password}, #{createAt}, #{updateAt})
     </insert>
 
     <!--更新-->
