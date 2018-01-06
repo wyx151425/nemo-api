@@ -7,8 +7,9 @@ public enum RespConst {
     SYSTEM_ERROR(500, "systemError"),
     PARAM_ERROR(601, "paramError"),
     USER_UNREGISTER(9000, "userUnregister"),
-    USER_LOGIN_TIMEOUT(9001, "userLoginTimeout"),
-    USER_LOGIN_PASSWORD_ERROR(9002, "userLoginPasswordError");
+    USER_REGISTERED(9001, "userRegistered"),
+    USER_LOGIN_TIMEOUT(9002, "userLoginTimeout"),
+    USER_LOGIN_PASSWORD_ERROR(9003, "userLoginPasswordError");
 
     private int statusCode;
     private String value;

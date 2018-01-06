@@ -2,34 +2,37 @@ package com.rumofuture.nemo.repository.cache;
 
 import com.alibaba.fastjson.JSON;
 import com.rumofuture.nemo.model.domain.User;
+import com.rumofuture.nemo.util.constant.NemoConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository(value = "userCache")
 public class UserCache {
 
-    private static final String USER = "user:";
-    private static final String TOKEN = "token:";
-    private static final String WEB_TOKEN = "token:web:";
+    private static final String USER = NemoConst.USER + NemoConst.Cache.SEPARATOR;
+    private static final String TOKEN = NemoConst.TOKEN + NemoConst.Cache.SEPARATOR;
+
+    private final NemoCache nemoCache;
 
     @Autowired
-    private NemoCache nemoCache;
+    public UserCache(NemoCache nemoCache) {
+        this.nemoCache = nemoCache;
+    }
 
-    public void set(Integer id, User user) {
-        String key = USER + id;
+    public void setOne(User user) {
+        String key = USER + user.getId();
         String value = JSON.toJSONString(user);
-        nemoCache.set(USER + id, value);
+        nemoCache.set(key, value);
     }
 
-    public void get(Integer id) {
-
+    public User getOne(Integer id) {
+        String key = USER + id;
+        String value = nemoCache.get(key);
+        return JSON.parseObject(value, User.class);
     }
 
-    public void setToken() {
-
-    }
-
-    public void getToken() {
-
+    public void setToken(String token, Integer id) {
+        String key = TOKEN + token;
+        nemoCache.set(key, String.valueOf(id));
     }
 }

@@ -15,14 +15,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author WangZhenqi
+ */
 @RestController
 @RequestMapping(value = "user")
 public class UserController extends NemoController {
 
     private static final Log log = LogFactory.getLog(UserController.class);
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping(value = "register")
     public Response<String> actionRegister(@Validated({User.Register.class}) @RequestBody User user, BindingResult result) {
@@ -38,6 +45,7 @@ public class UserController extends NemoController {
             User user = userService.login(requestUser);
             return new Response<>(user);
         } catch (NemoException e) {
+            log.error(e);
             throw e;
         } catch (Exception e) {
             log.error(e);
