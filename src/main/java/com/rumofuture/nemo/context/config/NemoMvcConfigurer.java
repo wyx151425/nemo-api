@@ -15,7 +15,10 @@ public class NemoMvcConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new NemoInterceptor()).addPathPatterns("/users/**");
+        registry.addInterceptor(new NemoInterceptor())
+                .addPathPatterns("/user/**")
+                .addPathPatterns("/book/**")
+                .addPathPatterns("/page/**");
     }
 
     @Override
