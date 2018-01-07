@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author WangZhenqi 2018/1/7
+ * 漫画册数据映射
+ *
+ * @author 王振琦  2018/1/7
  */
 @Mapper
 @Repository(value = "bookMapper")

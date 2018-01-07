@@ -1,7 +1,9 @@
 package com.rumofuture.nemo.model.entity;
 
 /**
- * @author WangZhenqi 2018/1/1
+ * 分页数据模型类
+ *
+ * @author 王振琦 2018/1/2
  */
 public class PageModel {
     private int index;

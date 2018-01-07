@@ -16,5 +16,5 @@ public interface PageDao extends NemoDao<Page, Integer> {
      * @param pageModel 分页模型
      * @return 目标对象列表
      */
-    List<Page> findAllByBook(Integer bookId, PageModel pageModel);
+    List<Page> findListByBook(Integer bookId, PageModel pageModel);
 }

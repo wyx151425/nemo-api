@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * @author WangZhenqi
+ * @author 王振琦 2017/11/30
  */
 @Repository(value = "userDao")
 public class UserRepository implements UserDao {
@@ -21,11 +21,6 @@ public class UserRepository implements UserDao {
 
     @Autowired
     private UserCache userCache;
-
-    @Override
-    public User findByMobilePhoneNumber(String mobilePhoneNumber) {
-        return userMapper.selectByMobilePhoneNumber(mobilePhoneNumber);
-    }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -65,13 +60,12 @@ public class UserRepository implements UserDao {
     }
 
     @Override
-    @Deprecated
-    public List<User> findAll() {
-        return null;
+    public List<User> findList(PageModel pageModel) {
+        return userMapper.selectList(pageModel);
     }
 
     @Override
-    public List<User> findAll(PageModel pageModel) {
-        return userMapper.selectList(pageModel);
+    public User findOneByMobilePhoneNumber(String mobilePhoneNumber) {
+        return userMapper.selectByMobilePhoneNumber(mobilePhoneNumber);
     }
 }

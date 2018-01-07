@@ -5,9 +5,11 @@ import com.rumofuture.nemo.model.entity.PageModel;
 import java.util.List;
 
 /**
+ * 映射规范
+ *
  * @param <T>  目标对象的类型
  * @param <ID> 目标对象的ID类型
- * @author WangZhenqi
+ * @author 王振琦  2017/12/21
  */
 public interface NemoMapper<T, ID> {
     /**
@@ -43,17 +45,10 @@ public interface NemoMapper<T, ID> {
     T selectOne(ID id);
 
     /**
-     * 查询数据列表
-     *
-     * @return 操作影响的行数
-     */
-    List<T> selectList();
-
-    /**
      * 分页查询数据列表
      *
-     * @param pageModel 分页对象
-     * @return 操作影响的行数
+     * @param pageModel 分页模型
+     * @return 目标对象列表
      */
     List<T> selectList(PageModel pageModel);
 }

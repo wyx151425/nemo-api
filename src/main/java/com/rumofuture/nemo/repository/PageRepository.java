@@ -4,12 +4,14 @@ import com.rumofuture.nemo.model.domain.Page;
 import com.rumofuture.nemo.model.entity.PageModel;
 import com.rumofuture.nemo.repository.mapper.PageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author WangZhenqi 2018/1/7
  */
+@Repository(value = "pageDao")
 public class PageRepository implements PageDao {
 
     @Autowired
@@ -38,18 +40,12 @@ public class PageRepository implements PageDao {
 
     @Override
     @Deprecated
-    public List<Page> findAll() {
+    public List<Page> findList(PageModel pageModel) {
         return null;
     }
 
     @Override
-    @Deprecated
-    public List<Page> findAll(PageModel pageModel) {
-        return null;
-    }
-
-    @Override
-    public List<Page> findAllByBook(Integer bookId, PageModel pageModel) {
+    public List<Page> findListByBook(Integer bookId, PageModel pageModel) {
         return null;
     }
 }

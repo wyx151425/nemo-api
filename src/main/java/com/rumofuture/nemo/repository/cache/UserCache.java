@@ -6,6 +6,9 @@ import com.rumofuture.nemo.util.constant.NemoConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author  王振琦  2018/1/2
+ */
 @Repository(value = "userCache")
 public class UserCache {
 

@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * @author WangZhenqi 2018/1/7
+ * 漫画册数据访问接口实现类
+ *
+ * @author 王振琦 2018/1/7
  */
 public class BookRepository implements BookDao {
 
@@ -51,12 +53,12 @@ public class BookRepository implements BookDao {
     }
 
     @Override
-    public List<Book> findAll() {
+    public List<Book> findList(PageModel pageModel) {
         return null;
     }
 
     @Override
-    public List<Book> findAll(PageModel pageModel) {
-        return null;
+    public List<Book> findListByAuthor(Integer authorId, PageModel pageModel) {
+        return bookMapper.selectListByAuthor(authorId, pageModel);
     }
 }

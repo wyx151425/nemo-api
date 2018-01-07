@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * @author WangZhenqi 2018/1/1
+ * Nemo实体类
+ *
+ * @author 王振琦  2018/1/1
  */
 public class NemoEntity implements Serializable {
     /**

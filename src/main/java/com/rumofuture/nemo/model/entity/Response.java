@@ -3,7 +3,9 @@ package com.rumofuture.nemo.model.entity;
 import com.rumofuture.nemo.util.constant.RespStatus;
 
 /**
- * @author WangZhenqi 2018/1/1
+ * 响应对象
+ *
+ * @author 王振琦  2017/11/30
  */
 public class Response<T> {
 

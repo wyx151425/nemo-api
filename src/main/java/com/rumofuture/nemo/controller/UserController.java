@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author WangZhenqi
+ * 用户数据 API
+ *
+ * @author 王振琦  2017/11/30
  */
 @RestController
 @RequestMapping(value = "user")
@@ -27,15 +29,29 @@ public class UserController extends NemoController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 注册
+     *
+     * @param user   用户数据传输对象
+     * @param result 数据绑定结果对象
+     * @return 响应对象
+     */
     @PostMapping(value = "register")
-    public Response<String> actionRegister(@Validated({User.Register.class}) @RequestBody User user, BindingResult result) {
+    public Response<User> actionRegister(@Validated({User.Register.class}) @RequestBody User user, BindingResult result) {
         bindingResultInspect(result);
         userService.register(user);
         return new Response<>(RespStatus.SUCCESS);
     }
 
+    /**
+     * 登录
+     *
+     * @param requestUser 用户数据传输对象
+     * @param result      数据绑定结果对象
+     * @return 响应对象
+     */
     @PostMapping(value = "login")
-    public Response<?> actionLogin(@Validated({User.Login.class}) @RequestBody User requestUser, BindingResult result) {
+    public Response<User> actionLogin(@Validated({User.Login.class}) @RequestBody User requestUser, BindingResult result) {
         bindingResultInspect(result);
         try {
             User user = userService.login(requestUser);

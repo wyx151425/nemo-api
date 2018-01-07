@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author  王振琦  2017/12/25
+ */
 @Repository(value = "nemoCache")
 public class NemoCache {
 

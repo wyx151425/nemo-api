@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author WangZhenqi
+ * @author  王振琦  2018/1/7
  */
 @Repository(value = "bookCache")
 public class BookCache {
