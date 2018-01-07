@@ -1,5 +1,8 @@
 package com.rumofuture.nemo.model.entity;
 
+/**
+ * @author WangZhenqi 2018/1/1
+ */
 public class PageModel {
     private int index;
     private int limit;

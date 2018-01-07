@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
+/**
+ * @author WangZhenqi
+ */
 public class NemoInterceptor implements HandlerInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(NemoInterceptor.class);
@@ -23,6 +26,8 @@ public class NemoInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        logger.info("***** preHandle *****");
+
         /* 1.请求相关数据 操作 */
         String contextPath = request.getContextPath();
         String uri = request.getRequestURI();
@@ -50,11 +55,11 @@ public class NemoInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
-
+        logger.info("***** postHandle *****");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
-
+        logger.info("***** afterCompletion *****");
     }
 }

@@ -2,6 +2,9 @@ package com.rumofuture.nemo.model.entity;
 
 import com.rumofuture.nemo.util.constant.RespStatus;
 
+/**
+ * @author WangZhenqi 2018/1/1
+ */
 public class Response<T> {
 
     private int statusCode;

@@ -34,12 +34,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(User userDto) {
-        User targetUser =  userRepository.findByMobilePhoneNumber(userDto.getMobilePhoneNumber());
+    public User login(User user) {
+        User targetUser =  userRepository.findByMobilePhoneNumber(user.getMobilePhoneNumber());
         if (null == targetUser) {
             throw new NemoException(RespStatus.USER_UNREGISTER);
         } else {
-            if (targetUser.getPassword().equals(userDto.getPassword())) {
+            if (targetUser.getPassword().equals(user.getPassword())) {
                 String token = Generator.getToken();
                 targetUser.setToken(token);
                 userRepository.save(targetUser);

@@ -7,48 +7,103 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 /**
- * Created by WangZhenqi on 2016/12/24.
+ * @author 王振琦 2016/12/24
  */
-
 public class User extends NemoEntity {
-
+    /**
+     * 注册验证接口
+     */
     public interface Register {
     }
-
+    /**
+     * 登录验证接口
+     */
     public interface Login {
     }
 
+    /**
+     * 姓名
+     */
     @NotBlank(groups = {User.Register.class})
     @Length(min = 2, max = 3)
-    private String name;  // 姓名
+    private String name;
+    /**
+     * 手机号
+     */
     @NotBlank(groups = {User.Register.class, User.Login.class})
     @Length(min = 11, max = 11)
     @Pattern(regexp = "((13\\d)|(15\\d)|(17\\d)|(18\\d))\\d{8}")
-    private String mobilePhoneNumber;  // 手机号
+    private String mobilePhoneNumber;
+    /**
+     * 密码
+     */
     @NotBlank(groups = {User.Register.class, User.Login.class})
     @Length(min = 6, max = 32)
-    private String password;  // 密码
-
+    private String password;
+    /**
+     * 权限令牌
+     */
     private String token;
-    private Integer status;  // 状态：0-禁用用户/1-普通用户/2-普通可发布漫画用户
-
-    private String email;  // 邮箱
-    private String motto;  // 座右铭
-    private String profile;  // 简介
-    private String profession;  // 职业
-    private String location;  // 所在地
-
-    private String gender;  // 性别
-    private String birthday;  // 生日
-
-    private Integer age;  // 年龄
-    private Integer followTotal;  // 关注作家数
-    private Integer followerTotal;  // 粉丝数
-    private Integer favoriteTotal; // 收藏漫画册数
-    private Integer bookTotal;  // 漫画册数量
-
-    private String avatarUrl;  // 头像
-    private String portraitUrl;  // 个人肖像
+    /**
+     * 状态：0-禁用用户/1-普通用户/2-普通可发布漫画用户
+     * private Integer status;
+     */
+    /**
+     * 邮箱
+     */
+    private String email;
+    /**
+     * 座右铭
+     */
+    private String motto;
+    /**
+     * 简介
+     */
+    private String profile;
+    /**
+     * 职业
+     */
+    private String profession;
+    /**
+     * 所在地
+     */
+    private String location;
+    /**
+     * 性别
+     */
+    private String gender;
+    /**
+     * 生日
+     */
+    private String birthday;
+    /**
+     * 年龄
+     */
+    private Integer age;
+    /**
+     * 关注作家数
+     */
+    private Integer followTotal;
+    /**
+     * 粉丝数
+     */
+    private Integer followerTotal;
+    /**
+     * 收藏漫画册数
+     */
+    private Integer favoriteTotal;
+    /**
+     * 漫画册数量
+     */
+    private Integer bookTotal;
+    /**
+     * 头像
+     */
+    private String avatarUrl;
+    /**
+     * 个人肖像
+     */
+    private String portraitUrl;
 
     public String getName() {
         return name;
@@ -80,14 +135,6 @@ public class User extends NemoEntity {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
     }
 
     public String getEmail() {

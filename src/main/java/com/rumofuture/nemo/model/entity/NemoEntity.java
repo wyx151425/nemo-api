@@ -1,20 +1,32 @@
 package com.rumofuture.nemo.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * Created by WangZhenqi on 2018/1/1.
+ * @author WangZhenqi 2018/1/1
  */
-
 public class NemoEntity implements Serializable {
-
-    private Integer id;  // 数据库主键
-    private String objectId;  // 对象主键
-    private LocalDateTime createAt;  // 创建时间
-    private LocalDateTime updateAt;  // 更新时间
+    /**
+     * 数据库主键
+     */
+    private Integer id;
+    /**
+     * 对象主键
+     */
+    private String objectId;
+    /**
+     * 对象状态
+     */
+    private Integer status;
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createAt;
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateAt;
 
     public NemoEntity() {
     }
@@ -33,6 +45,14 @@ public class NemoEntity implements Serializable {
 
     public void setObjectId(String objectId) {
         this.objectId = objectId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public LocalDateTime getCreateAt() {
