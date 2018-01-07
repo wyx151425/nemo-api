@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+/**
+ * 用户业务逻辑接口实现类
+ *
+ * @author 王振琦  2017/12/28
+ */
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
 
@@ -20,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(User user) {
-        User targetUser = userRepository.findByMobilePhoneNumber(user.getMobilePhoneNumber());
+        User targetUser = userRepository.findOneByMobilePhoneNumber(user.getMobilePhoneNumber());
         if (null == targetUser) {
             user.setObjectId(Generator.getUUID());
             user.setStatus(1);
@@ -35,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(User user) {
-        User targetUser =  userRepository.findByMobilePhoneNumber(user.getMobilePhoneNumber());
+        User targetUser = userRepository.findOneByMobilePhoneNumber(user.getMobilePhoneNumber());
         if (null == targetUser) {
             throw new NemoException(RespStatus.USER_UNREGISTER);
         } else {
