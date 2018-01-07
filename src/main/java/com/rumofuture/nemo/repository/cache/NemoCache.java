@@ -25,4 +25,8 @@ public class NemoCache {
     public String get(String key) {
         return redisTemplate.opsForValue().get(key);
     }
+
+    public Boolean delete(String key) {
+        return redisTemplate.delete(key);
+    }
 }

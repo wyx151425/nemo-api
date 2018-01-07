@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rumofuture.nemo.repository.mapper.UserMapper">
+<mapper namespace="com.rumofuture.nemo.repository.mapper.BookMapper">
 
-    <resultMap id="pageMap" type="com.rumofuture.nemo.model.domain.Page">
+    <resultMap id="bookMap" type="com.rumofuture.nemo.model.domain.Book">
         <id column="id" property="id"/>
         <result column="object_id" property="objectId"/>
-        <result column="name" property="name"/>
         <result column="status" property="status"/>
-        <result column="mobile_phone_number" property="mobilePhoneNumber"/>
-        <result column="password" property="password"/>
         <result column="create_at" property="createAt"/>
         <result column="update_at" property="updateAt"/>
-        <result column="email" property="email"/>
-        <result column="motto" property="motto"/>
-        <result column="profile" property="profile"/>
-        <result column="profession" property="profession"/>
-        <result column="location" property="location"/>
-        <result column="gender" property="gender"/>
-        <result column="birthday" property="birthday"/>
-        <result column="age" property="age"/>
-        <result column="follow_total" property="followTotal"/>
-        <result column="follower_total" property="followerTotal"/>
-        <result column="favorite_total" property="favoriteTotal"/>
-        <result column="book_total" property="bookTotal"/>
-        <result column="avatar_url" property="avatarUrl"/>
-        <result column="portrait_url" property="portraitUrl"/>
+        <result column="name" property="name"/>
+        <result column="style" property="style"/>
+        <result column="introduction" property="introduction"/>
+        <result column="source_url" property="sourceUrl"/>
+        <result column="cover_url" property="coverUrl"/>
+        <result column="page_total" property="pageTotal"/>
+        <result column="favor_total" property="favorTotal"/>
+        <result column="type" property="type"/>
+        <result column="open" property="open"/>
+        <result column="copyright" property="copyright"/>
     </resultMap>
 
     <!--保存-->
-    <insert id="insert" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user(object_id, name, status, mobile_phone_number, password, create_at, update_at)
-        VALUES(#{objectId}, #{name}, #{status}, #{mobilePhoneNumber}, #{password}, #{createAt}, #{updateAt})
+    <insert id="insert" parameterType="book" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO book(
+            object_id, status, create_at, update_at, author_id, name, style, introduction,
+            source_url, cover_url, page_total, favor_total, type, open, copyright
+        )
+        VALUES(
+            #{objectId}, #{status}, #{createAt}, #{updateAt}, #{author.id}, #{name}, #{style},
+            #{introduction}, #{sourceUrl}, #{coverUrl}, #{pageTotal}, #{favorTotal},
+            #{type}, #{open}, #{copyright}
+        )
     </insert>
 
     <!--更新-->
-    <update id="update" parameterType="user">
-        UPDATE user
+    <update id="update" parameterType="book">
+        UPDATE book
         <set>
             <if test="name != null">name = #{name},</if>
             <if test="password != null">password = #{password},</if>
@@ -49,17 +49,16 @@
     </update>
 
     <!-- 删除 -->
-    <update id="delete" parameterType="user">
-        UPDATE user SET status = 0 WHERE id = #{id}
+    <update id="delete" parameterType="int">
+        UPDATE book SET status = 0 WHERE id = #{id}
     </update>
 
     <!--查找-->
-    <select id="selectOne" parameterType="int" resultMap="userMap">
-        SELECT * FROM user WHERE id = #{id}
+    <select id="selectOne" parameterType="int" resultMap="bookMap">
+        SELECT * FROM book WHERE id = #{id}
     </select>
 
-    <!--查找-->
-    <select id="selectByMobilePhoneNumber" parameterType="string" resultMap="userMap">
-        SELECT * FROM user WHERE mobile_phone_number = #{mobilePhoneNumber}
+    <select id="selectListByAuthor" parameterType="int" resultMap="bookMap">
+        SELECT * FROM book WHERE author_id = #{authorId} AND status > 0
     </select>
 </mapper>

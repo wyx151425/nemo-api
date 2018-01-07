@@ -4,6 +4,8 @@ public class NemoConst {
 
     public static final String TOKEN = "token";
     public static final String USER = "user";
+    public static final String BOOK = "book";
+    public static final String PAGE = "page";
 
     public static class AppType {
         public static final String WEB = "Web";

@@ -12,12 +12,8 @@ public class UserCache {
     private static final String USER = NemoConst.USER + NemoConst.Cache.SEPARATOR;
     private static final String TOKEN = NemoConst.TOKEN + NemoConst.Cache.SEPARATOR;
 
-    private final NemoCache nemoCache;
-
     @Autowired
-    public UserCache(NemoCache nemoCache) {
-        this.nemoCache = nemoCache;
-    }
+    private NemoCache nemoCache;
 
     public void setOne(User user) {
         String key = USER + user.getId();

@@ -1,40 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.rumofuture.nemo.repository.mapper.UserMapper">
+<mapper namespace="com.rumofuture.nemo.repository.mapper.PageMapper">
 
-    <resultMap id="userMap" type="com.rumofuture.nemo.model.domain.User">
+    <resultMap id="pageMap" type="com.rumofuture.nemo.model.domain.Page">
         <id column="id" property="id"/>
-        <result column="object_id" property="objectId"/>
-        <result column="name" property="name"/>
-        <result column="status" property="status"/>
-        <result column="mobile_phone_number" property="mobilePhoneNumber"/>
-        <result column="password" property="password"/>
-        <result column="create_at" property="createAt"/>
-        <result column="update_at" property="updateAt"/>
-        <result column="email" property="email"/>
-        <result column="motto" property="motto"/>
-        <result column="profile" property="profile"/>
-        <result column="profession" property="profession"/>
-        <result column="location" property="location"/>
-        <result column="gender" property="gender"/>
-        <result column="birthday" property="birthday"/>
-        <result column="age" property="age"/>
-        <result column="follow_total" property="followTotal"/>
-        <result column="follower_total" property="followerTotal"/>
-        <result column="favorite_total" property="favoriteTotal"/>
-        <result column="book_total" property="bookTotal"/>
-        <result column="avatar_url" property="avatarUrl"/>
-        <result column="portrait_url" property="portraitUrl"/>
+        <result property="objectId" column="object_id"/>
+        <result property="status" column="status"/>
+        <result property="createAt" column="create_at"/>
+        <result property="updateAt" column="update_at"/>
+        <result property="imageUrl" column="image_url"/>
+        <association property="book" column="book_id" javaType="com.rumofuture.nemo.model.domain.Book"
+                     jdbcType="int" fetchType="lazy" select="com.rumofuture.nemo.repository.mapper.BookMapper"/>
     </resultMap>
 
-    <!--保存-->
-    <insert id="insert" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user(object_id, name, status, mobile_phone_number, password, create_at, update_at)
-        VALUES(#{objectId}, #{name}, #{status}, #{mobilePhoneNumber}, #{password}, #{createAt}, #{updateAt})
+    <!-- 保存 -->
+    <insert id="insert" parameterType="page" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO page(object_id, status, create_at, update_at, image_url, book_id)
+        VALUES(#{objectId}, #{status}, #{createAt}, #{updateAt}, #{book.id}, #{imageUrl})
     </insert>
 
-    <!--更新-->
+    <!-- 更新 -->
     <update id="update" parameterType="user">
         UPDATE user
         <set>
@@ -48,8 +34,8 @@
         WHERE id = #{id}
     </update>
 
-    <!--查找-->
-    <select id="selectOne" parameterType="int" resultMap="userMap">
+    <!-- 查找 -->
+    <select id="selectOne" parameterType="int" resultMap="pageMap">
         SELECT * FROM user WHERE id = #{id}
     </select>
 

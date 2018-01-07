@@ -1,9 +1,28 @@
 package com.rumofuture.nemo.repository.mapper;
 
 import com.rumofuture.nemo.model.domain.Book;
+import com.rumofuture.nemo.model.entity.PageModel;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
- * @author WangZhenqi
+ * @author WangZhenqi 2018/1/7
  */
+@Mapper
+@Repository(value = "bookMapper")
 public interface BookMapper extends NemoMapper<Book, Integer> {
+    /**
+     * 根据作者ID查询漫画册
+     *
+     * @param authorId  作者id
+     * @param pageModel 分页对象
+     * @return 目标对象
+     */
+    List<Book> selectListByAuthor(
+            @Param("authorId") Integer authorId,
+            @Param("page") PageModel pageModel
+    );
 }
