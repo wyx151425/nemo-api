@@ -10,10 +10,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 用户数据 API
@@ -63,5 +62,27 @@ public class UserController extends NemoController {
             log.error(e);
             throw new NemoException(RespStatus.SYSTEM_ERROR);
         }
+    }
+
+    /**
+     * 更新
+     *
+     * @param user 用户数据
+     * @return 响应对象
+     */
+    @PostMapping(value = "update")
+    public Response<User> actionUpdate(@RequestBody User user) {
+        return new Response<>();
+    }
+
+    /**
+     * 查询漫画作者列表
+     *
+     * @param index 分页索引
+     * @return 响应对象
+     */
+    @GetMapping(value = "list")
+    public Response<List<User>> actionQueryAuthorList(@RequestParam("index") int index) {
+        return new Response<>();
     }
 }
