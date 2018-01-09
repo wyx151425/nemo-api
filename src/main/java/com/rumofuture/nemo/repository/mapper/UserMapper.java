@@ -1,6 +1,7 @@
 package com.rumofuture.nemo.repository.mapper;
 
 import com.rumofuture.nemo.model.domain.User;
+import com.rumofuture.nemo.model.entity.PageModel;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -20,5 +21,13 @@ public interface UserMapper extends NemoMapper<User, Integer> {
      * @param mobilePhoneNumber 用户手机号
      * @return 目标对象
      */
-    User selectByMobilePhoneNumber(String mobilePhoneNumber);
+    User selectOneByMobilePhoneNumber(String mobilePhoneNumber);
+
+    /**
+     * 查询漫画册作者列表
+     *
+     * @param pageModel 分页模型
+     * @return 目标对象列表
+     */
+    List<User> selectAuthorList(PageModel pageModel);
 }

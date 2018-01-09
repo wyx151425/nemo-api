@@ -66,6 +66,6 @@ public class UserRepository implements UserDao {
 
     @Override
     public User findOneByMobilePhoneNumber(String mobilePhoneNumber) {
-        return userMapper.selectByMobilePhoneNumber(mobilePhoneNumber);
+        return userMapper.selectOneByMobilePhoneNumber(mobilePhoneNumber);
     }
 }

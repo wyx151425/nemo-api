@@ -15,30 +15,33 @@
     <!-- 保存 -->
     <insert id="insert" parameterType="page" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO page(object_id, status, create_at, update_at, image_url, book_id)
-        VALUES(#{objectId}, #{status}, #{createAt}, #{updateAt}, #{book.id}, #{imageUrl})
+        VALUES(#{objectId}, #{status}, NOW(), NOW(), #{imageUrl}, #{book.id})
     </insert>
 
     <!-- 更新 -->
     <update id="update" parameterType="page">
         UPDATE user
         <set>
-            <if test="name != null">name = #{name},</if>
-            <if test="password != null">password = #{password},</if>
-            <if test="orgId != null">org_id = #{orgId},</if>
-            <if test="orgCode != null">org_code = #{orgCode},</if>
-            <if test="orgName != null">org_name = #{orgName},</if>
-            <if test="updateTime != null">update_time = #{updateTime}</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="imageUrl != null">image_url = #{imageUrl},</if>
         </set>
+        update_at = NOW()
         WHERE id = #{id}
     </update>
 
-    <!-- 查找 -->
+    <!-- 删除 -->
+    <update id="delete" parameterType="int">
+        UPDATE page SET status = 0 WHERE id = #{id}
+    </update>
+
+    <!-- 根据ID查找漫画分页 -->
     <select id="selectOne" parameterType="int" resultMap="pageMap">
-        SELECT * FROM user WHERE id = #{id}
+        SELECT * FROM page WHERE id = #{id} AND status > 0
     </select>
 
-    <!--查找-->
-    <select id="selectByMobilePhoneNumber" parameterType="string" resultMap="pageMap">
-        SELECT * FROM user WHERE mobile_phone_number = #{mobilePhoneNumber}
+    <!-- 根据漫画册查找漫画分页列表 -->
+    <select id="selectListByBook" resultMap="pageMap">
+        SELECT * FROM page WHERE book_id = #{bookId} AND status > 0
+        ORDER BY id LIMIT #{pageModel.index}, #{pageModel.limit}
     </select>
 </mapper>

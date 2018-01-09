@@ -23,6 +23,6 @@ public interface PageMapper extends NemoMapper<Page, Integer> {
      */
     List<Page> selectListByBook(
             @Param("bookId") Integer bookId,
-            @Param("page") PageModel pageModel
+            @Param("pageModel") PageModel pageModel
     );
 }

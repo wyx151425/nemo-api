@@ -5,7 +5,7 @@ import com.rumofuture.nemo.model.entity.PageModel;
 import java.util.List;
 
 /**
- * 映射规范
+ * 数据库映射规范
  *
  * @param <T>  目标对象的类型
  * @param <ID> 目标对象的ID类型
