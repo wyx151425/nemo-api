@@ -56,10 +56,10 @@ public class UserController extends NemoController {
             User user = userService.login(requestUser);
             return new Response<>(user);
         } catch (NemoException e) {
-            log.error(e);
+            log.error("UserController: actionLogin", e);
             throw e;
         } catch (Exception e) {
-            log.error(e);
+            log.error("UserController: actionLogin", e);
             throw new NemoException(RespStatus.SYSTEM_ERROR);
         }
     }
@@ -72,7 +72,13 @@ public class UserController extends NemoController {
      */
     @PostMapping(value = "update")
     public Response<User> actionUpdate(@RequestBody User user) {
-        return new Response<>();
+        try {
+            userService.update(user);
+            return new Response<>();
+        } catch (Exception e) {
+            log.error("UserController: actionUpdate", e);
+            throw new NemoException(RespStatus.STATUS_ERROR);
+        }
     }
 
     /**
@@ -82,7 +88,8 @@ public class UserController extends NemoController {
      * @return 响应对象
      */
     @GetMapping(value = "list")
-    public Response<List<User>> actionQueryAuthorList(@RequestParam("index") int index) {
-        return new Response<>();
+    public Response<List<User>> actionQueryAuthorList(@RequestParam("index") Integer index) {
+        List<User> userList = userService.queryAuthorList(index);
+        return new Response<>(userList);
     }
 }

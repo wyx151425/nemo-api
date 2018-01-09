@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "book")
 public class BookController extends NemoController {
 
-    @PostMapping(value = "create")
-    Response<Book> actionCreate(@RequestBody RequestBook book) {
+    @PostMapping(value = "save")
+    Response<Book> actionSave(@RequestBody Book book) {
         return new Response<>();
     }
 

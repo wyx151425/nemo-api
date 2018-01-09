@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * 用户业务逻辑接口实现类
@@ -53,5 +54,15 @@ public class UserServiceImpl implements UserService {
                 throw new NemoException(RespStatus.USER_LOGIN_PASSWORD_ERROR);
             }
         }
+    }
+
+    @Override
+    public void update(User user) {
+
+    }
+
+    @Override
+    public List<User> queryAuthorList(Integer index) {
+        return null;
     }
 }
