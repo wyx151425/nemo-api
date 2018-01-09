@@ -58,7 +58,7 @@
         SELECT * FROM book WHERE id = #{id}
     </select>
 
-    <select id="selectListByAuthor" parameterType="int" resultMap="bookMap">
-        SELECT * FROM book WHERE author_id = #{authorId} AND status > 0
+    <select id="selectListByAuthor" resultMap="bookMap">
+        SELECT * FROM book WHERE author_id = #{authorId} AND status > 0 ORDER BY id
     </select>
 </mapper>

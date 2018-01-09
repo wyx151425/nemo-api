@@ -10,8 +10,6 @@
         <result property="createAt" column="create_at"/>
         <result property="updateAt" column="update_at"/>
         <result property="imageUrl" column="image_url"/>
-        <association property="book" column="book_id" javaType="com.rumofuture.nemo.model.domain.Book"
-                     jdbcType="int" fetchType="lazy" select="com.rumofuture.nemo.repository.mapper.BookMapper"/>
     </resultMap>
 
     <!-- 保存 -->
@@ -21,7 +19,7 @@
     </insert>
 
     <!-- 更新 -->
-    <update id="update" parameterType="user">
+    <update id="update" parameterType="page">
         UPDATE user
         <set>
             <if test="name != null">name = #{name},</if>
@@ -40,7 +38,7 @@
     </select>
 
     <!--查找-->
-    <select id="selectByMobilePhoneNumber" parameterType="string" resultMap="userMap">
+    <select id="selectByMobilePhoneNumber" parameterType="string" resultMap="pageMap">
         SELECT * FROM user WHERE mobile_phone_number = #{mobilePhoneNumber}
     </select>
 </mapper>

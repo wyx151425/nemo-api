@@ -22,5 +22,5 @@ mybatis:
     use-generated-keys: true
     use-column-label: true
     map-underscore-to-camel-case: true
-  type-aliases-package: com.rumofuture.nemo.model.domain
+  type-aliases-package: com.rumofuture.nemo.model.domain, com.rumofuture.nemo.model.entity
   mapper-locations: classpath:mappers/*.xml

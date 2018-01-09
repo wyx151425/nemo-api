@@ -34,8 +34,7 @@ public class NemoController {
 
     void bindingResultInspect(BindingResult result) {
         if (result.hasErrors()) {
-            FieldError error = (FieldError) result.getAllErrors().get(0);
-            throw new NemoJSRException(error.getField() + error.getDefaultMessage());
+            throw new NemoJSRException();
         }
     }
 }
