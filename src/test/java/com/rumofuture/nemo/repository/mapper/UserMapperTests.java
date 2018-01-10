@@ -15,9 +15,9 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserMapperTest {
+public class UserMapperTests {
 
-    private static final Log log = LogFactory.getLog(UserMapperTest.class);
+    private static final Log log = LogFactory.getLog(UserMapperTests.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -50,5 +50,11 @@ public class UserMapperTest {
         for (User user : userList) {
             log.error(JSON.toJSONString(user));
         }
+    }
+
+    @Test
+    public void testSelectOneByMobilePhoneNumber() {
+        User user = userMapper.selectOneByMobilePhoneNumber("15253620357");
+        log.error(JSON.toJSONString(user));
     }
 }

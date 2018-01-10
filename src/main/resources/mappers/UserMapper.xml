@@ -31,7 +31,7 @@
     <!-- 保存 -->
     <insert id="insert" parameterType="user" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user(object_id, name, status, mobile_phone_number, password, create_at, update_at, age, follow_total, follower_total, favorite_total, book_total)
-        VALUES(#{objectId}, #{name}, #{status}, #{mobilePhoneNumber}, #{password}, #{createAt}, #{updateAt}, 0, 0, 0, 0, 0)
+        VALUES(#{objectId}, #{name}, #{status}, #{mobilePhoneNumber}, #{password}, NOW(), NOW(), 0, 0, 0, 0, 0)
     </insert>
 
     <!-- 更新 -->
@@ -54,9 +54,9 @@
             <if test="favoriteTotal != null">avorite_total = #{favoriteTotal},</if>
             <if test="bookTotal != null">book_total = #{bookTotal},</if>
             <if test="avatarUrl != null">avatar_url = #{avatarUrl},</if>
-            <if test="portraitUrl != null">portrait_url = #{portraitUrl}</if>
+            <if test="portraitUrl != null">portrait_url = #{portraitUrl},</if>
+            update_at = NOW()
         </set>
-        update_at = NOW()
         WHERE id = #{id}
     </update>
 
@@ -67,12 +67,12 @@
 
     <!-- 根据ID查询用户 -->
     <select id="selectOne" parameterType="int" resultMap="userMap">
-        SELECT * FROM user WHERE id = #{id} AND status > 0
+        SELECT * FROM user WHERE id = #{id}
     </select>
 
     <!-- 查询用户列表 -->
     <select id="selectList" parameterType="pageModel" resultMap="userMap">
-        SELECT * FROM user WHERE status > 0 ORDER BY id ASC LIMIT #{index}, #{limit}
+        SELECT * FROM user ORDER BY id ASC LIMIT #{index}, #{limit}
     </select>
 
     <!-- 根据手机号查询用户 -->

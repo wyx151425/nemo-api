@@ -20,12 +20,12 @@
 
     <!-- 更新 -->
     <update id="update" parameterType="page">
-        UPDATE user
+        UPDATE page
         <set>
             <if test="status != null">status = #{status},</if>
             <if test="imageUrl != null">image_url = #{imageUrl},</if>
+            update_at = NOW()
         </set>
-        update_at = NOW()
         WHERE id = #{id}
     </update>
 
@@ -37,6 +37,11 @@
     <!-- 根据ID查找漫画分页 -->
     <select id="selectOne" parameterType="int" resultMap="pageMap">
         SELECT * FROM page WHERE id = #{id} AND status > 0
+    </select>
+
+    <!-- 查找漫画分页列表 -->
+    <select id="selectList" parameterType="pageModel" resultMap="pageMap">
+        SELECT * FROM page WHERE status > 0 ORDER BY id ASC LIMIT #{index}, #{limit}
     </select>
 
     <!-- 根据漫画册查找漫画分页列表 -->

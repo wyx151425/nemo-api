@@ -46,8 +46,8 @@
             <if test="type != null">type = #{type},</if>
             <if test="open != null"> = #{open},</if>
             <if test="copyright != null"> = #{copyright},</if>
+            update_at = NOW()
         </set>
-        update_at = NOW()
         WHERE id = #{id}
     </update>
 
@@ -69,6 +69,6 @@
     <!-- 根据漫画册作者ID查找 -->
     <select id="selectListByAuthor" resultMap="bookMap">
         SELECT * FROM book WHERE author_id = #{authorId} AND status > 0
-        ORDER BY id LIMIT #{pageModel.index}, #{pageModel.limit}
+        ORDER BY id ASC LIMIT #{pageModel.index}, #{pageModel.limit}
     </select>
 </mapper>

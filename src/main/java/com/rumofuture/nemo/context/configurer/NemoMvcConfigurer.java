@@ -1,4 +1,4 @@
-package com.rumofuture.nemo.context.config;
+package com.rumofuture.nemo.context.configurer;
 
 import com.rumofuture.nemo.context.interceptor.NemoInterceptor;
 import org.springframework.context.annotation.Configuration;
