@@ -26,7 +26,7 @@ public class NemoInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("***** preHandle *****");
+        logger.info("NemoInterceptor: preHandle");
 
         /* 1.请求相关数据 操作 */
         String contextPath = request.getContextPath();
@@ -55,11 +55,11 @@ public class NemoInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
-        logger.info("***** postHandle *****");
+        logger.info("NemoInterceptor: postHandle");
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
-        logger.info("***** afterCompletion *****");
+        logger.info("NemoInterceptor: afterCompletion");
     }
 }
