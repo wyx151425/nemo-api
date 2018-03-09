@@ -16,12 +16,11 @@ import java.util.List;
  * @author 王振琦  2018/1/7
  */
 @RestController
-@RequestMapping(value = "page")
 public class PageController {
 
     private static final Log log = LogFactory.getLog(UserController.class);
 
-    @PostMapping(value = "save")
+    @PostMapping(value = "pages")
     public Response<Page> actionSave(@RequestBody Page page) {
         try {
             return new Response<>();
@@ -31,17 +30,7 @@ public class PageController {
         }
     }
 
-    @PostMapping(value = "update")
-    public Response<Page> actionUpdate(@RequestBody Page page) {
-        try {
-            return new Response<>();
-        } catch (Exception e) {
-            log.error("PageController: actionUpdate", e);
-            throw new NemoException(RespStatus.UPDATE_FAILED);
-        }
-    }
-
-    @PostMapping(value = "delete")
+    @DeleteMapping(value = "pages")
     public Response<Page> actionDelete(@RequestBody Page page) {
         try {
             return new Response<>();
@@ -51,8 +40,18 @@ public class PageController {
         }
     }
 
-    @GetMapping(value = "listByBook")
-    public Response<List<Page>> actionQueryListByBook(@RequestParam("bookId") Integer bookId) {
+    @PutMapping(value = "pages")
+    public Response<Page> actionUpdate(@RequestBody Page page) {
+        try {
+            return new Response<>();
+        } catch (Exception e) {
+            log.error("PageController: actionUpdate", e);
+            throw new NemoException(RespStatus.UPDATE_FAILED);
+        }
+    }
+
+    @GetMapping(value = "books/{id}/pages")
+    public Response<List<Page>> actionQueryPageListByBook(@RequestParam("id") Integer id) {
         try {
             return new Response<>();
         } catch (Exception e) {

@@ -83,27 +83,27 @@ public class User extends NemoEntity {
     /**
      * 关注作家数
      */
-    private Integer followTotal;
+    private Integer follow;
     /**
      * 粉丝数
      */
-    private Integer followerTotal;
+    private Integer follower;
     /**
      * 收藏漫画册数
      */
-    private Integer favoriteTotal;
+    private Integer favorite;
     /**
      * 漫画册数量
      */
-    private Integer bookTotal;
+    private Integer book;
     /**
      * 头像
      */
-    private String avatarUrl;
+    private String avatar;
     /**
      * 个人肖像
      */
-    private String portraitUrl;
+    private String portrait;
 
     public String getName() {
         return name;
@@ -201,51 +201,51 @@ public class User extends NemoEntity {
         this.age = age;
     }
 
-    public Integer getFollowTotal() {
-        return followTotal;
+    public Integer getFollow() {
+        return follow;
     }
 
-    public void setFollowTotal(Integer followTotal) {
-        this.followTotal = followTotal;
+    public void setFollow(Integer follow) {
+        this.follow = follow;
     }
 
-    public Integer getFollowerTotal() {
-        return followerTotal;
+    public Integer getFollower() {
+        return follower;
     }
 
-    public void setFollowerTotal(Integer followerTotal) {
-        this.followerTotal = followerTotal;
+    public void setFollower(Integer follower) {
+        this.follower = follower;
     }
 
-    public Integer getFavoriteTotal() {
-        return favoriteTotal;
+    public Integer getFavorite() {
+        return favorite;
     }
 
-    public void setFavoriteTotal(Integer favoriteTotal) {
-        this.favoriteTotal = favoriteTotal;
+    public void setFavorite(Integer favorite) {
+        this.favorite = favorite;
     }
 
-    public Integer getBookTotal() {
-        return bookTotal;
+    public Integer getBook() {
+        return book;
     }
 
-    public void setBookTotal(Integer bookTotal) {
-        this.bookTotal = bookTotal;
+    public void setBook(Integer book) {
+        this.book = book;
     }
 
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public String getPortraitUrl() {
-        return portraitUrl;
+    public String getPortrait() {
+        return portrait;
     }
 
-    public void setPortraitUrl(String portraitUrl) {
-        this.portraitUrl = portraitUrl;
+    public void setPortrait(String portrait) {
+        this.portrait = portrait;
     }
 }

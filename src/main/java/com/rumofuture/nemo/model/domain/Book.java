@@ -45,7 +45,7 @@ public class Book extends NemoEntity {
     /**
      * 漫画册是否公开
      */
-    private Boolean open;
+    private Boolean publish;
     /**
      * 漫画册是否是自己原创
      */
@@ -123,12 +123,12 @@ public class Book extends NemoEntity {
         this.type = type;
     }
 
-    public Boolean getOpen() {
-        return open;
+    public Boolean getPublish() {
+        return publish;
     }
 
-    public void setOpen(Boolean open) {
-        this.open = open;
+    public void setPublish(Boolean publish) {
+        this.publish = publish;
     }
 
     public Boolean getCopyright() {

@@ -20,13 +20,13 @@ CREATE TABLE user
   birthday            VARCHAR(32),
 
   age                 INT(3),
-  follow_total        INT(11),
-  follower_total      INT(11) ,
-  favorite_total      INT(11),
-  book_total          INT(3),
+  follow        INT(11),
+  follower      INT(11) ,
+  favorite      INT(11),
+  book          INT(3),
 
-  avatar_url          VARCHAR(256),
-  portrait_url        VARCHAR(256),
+  avatar         VARCHAR(256),
+  portrait        VARCHAR(256),
   PRIMARY KEY (id)
 )
   ENGINE = INNODB
@@ -45,11 +45,11 @@ CREATE TABLE book
   name         VARCHAR(64),
   style        VARCHAR(32),
   introduction TEXT,
-  source_url   VARCHAR(256),
-  cover_url    VARCHAR(256),
+  url   VARCHAR(256),
+  cover    VARCHAR(256),
 
-  page_total   INT(11) DEFAULT 0,
-  favor_total  INT(11) DEFAULT 0,
+  page   INT(11) DEFAULT 0,
+  favor  INT(11) DEFAULT 0,
 
   type         INT(1),
   open         BOOLEAN,
@@ -68,7 +68,7 @@ CREATE TABLE page
   update_at DATETIME,
 
   book_id   INT(11),
-  image_url VARCHAR(256),
+  image VARCHAR(256),
   PRIMARY KEY (id)
 )
   ENGINE = INNODB
