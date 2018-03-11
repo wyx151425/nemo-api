@@ -11,5 +11,4 @@ public interface BookService {
     void save(Book book);
     void delete(Integer id);
     void update(Book book);
-
 }

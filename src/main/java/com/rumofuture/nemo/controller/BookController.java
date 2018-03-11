@@ -27,6 +27,7 @@ public class BookController extends NemoController {
         bookService.save(book);
         try {
             bookService.save(book);
+            return new Response<>(book);
         } catch (Exception e) {
             throw new NemoException(RespStatus.SYSTEM_ERROR);
         }

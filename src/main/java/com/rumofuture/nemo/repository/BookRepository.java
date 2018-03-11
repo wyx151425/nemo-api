@@ -5,6 +5,7 @@ import com.rumofuture.nemo.model.entity.PageModel;
 import com.rumofuture.nemo.repository.cache.BookCache;
 import com.rumofuture.nemo.repository.mapper.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  *
  * @author 王振琦 2018/1/7
  */
+@Repository(value = "bookRepository")
 public class BookRepository implements BookDao {
 
     @Autowired

@@ -1,6 +1,9 @@
 package com.rumofuture.nemo.service.impl;
 
+import com.rumofuture.nemo.model.domain.Book;
+import com.rumofuture.nemo.repository.BookRepository;
 import com.rumofuture.nemo.service.BookService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,4 +13,22 @@ import org.springframework.stereotype.Service;
  */
 @Service(value = "bookService")
 public class BookServiceImpl implements BookService {
+
+    @Autowired
+    private BookRepository bookRepository;
+
+    @Override
+    public void save(Book book) {
+
+    }
+
+    @Override
+    public void delete(Integer id) {
+
+    }
+
+    @Override
+    public void update(Book book) {
+
+    }
 }
