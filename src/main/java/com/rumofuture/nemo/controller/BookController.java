@@ -35,20 +35,35 @@ public class BookController extends NemoController {
 
     @DeleteMapping(value = "books/{id}")
     Response<Book> actionDeleteBook(@PathVariable(value = "id") Integer id) {
-        return new Response<>();
+        try {
+            bookService.delete(id);
+            return new Response<>(RespStatus.SUCCESS);
+        } catch (Exception e) {
+            throw new NemoException(RespStatus.DELETE_FAILED);
+        }
     }
 
     @PutMapping(value = "books/{id}")
     Response<Book> actionUpdateBook(@RequestBody Book book) {
-        return new Response<>();
+        try {
+            bookService.update(book);
+            return new Response<>(RespStatus.SUCCESS);
+        } catch (Exception e) {
+            throw new NemoException(RespStatus.UPDATE_FAILED);
+        }
     }
 
     @GetMapping(value = "users/{id}/books")
-    Response<Book> actionQueryBookListByAuthor(
+    Response<List<Book>> actionQueryBookListByAuthor(
             @PathVariable(value = "id") Integer id,
             @RequestParam(value = "index") Integer index
     ) {
-        return new Response<>();
+        try {
+            List<Book> bookList = bookService.findListByUser(id, index);
+            return new Response<>(bookList);
+        } catch (Exception e) {
+            throw new NemoException(RespStatus.QUERY_FAILED);
+        }
     }
 
     @GetMapping(value = "books")
