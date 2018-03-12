@@ -8,8 +8,6 @@ import com.rumofuture.nemo.util.constant.RespStatus;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,7 +33,7 @@ public class UserController extends NemoController {
      */
     @GetMapping(value = "users")
     public Response<List<User>> actionQueryAuthorList(@RequestParam("index") Integer index) {
-        List<User> userList = userService.queryAuthorList(index);
+        List<User> userList = userService.findAuthorList(index);
         return new Response<>(userList);
     }
 

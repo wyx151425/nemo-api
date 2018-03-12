@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> queryAuthorList(Integer index) {
+    public List<User> findAuthorList(Integer index) {
         return null;
     }
 }

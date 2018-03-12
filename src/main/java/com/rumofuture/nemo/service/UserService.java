@@ -41,5 +41,5 @@ public interface UserService {
      * @param index 分页索引
      * @return 漫画册作者列表
      */
-    List<User> queryAuthorList(Integer index);
+    List<User> findAuthorList(Integer index);
 }
