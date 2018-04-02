@@ -69,6 +69,12 @@
     <!-- 根据漫画册作者ID查找 -->
     <select id="selectListByAuthor" resultMap="bookMap">
         SELECT * FROM book WHERE author_id = #{authorId} AND status > 0
-        ORDER BY id ASC LIMIT #{pageModel.index}, #{pageModel.limit}
+        ORDER BY id ASC LIMIT #{page.index}, #{page.limit}
+    </select>
+
+    <!-- 根据漫画册风格查找 -->
+    <select id="selectListByStyle" resultMap="bookMap">
+        SELECT * FROM book WHERE style = #{style} AND status > 0
+        ORDER BY id ASC LIMIT #{page.index}, #{page.limit}
     </select>
 </mapper>

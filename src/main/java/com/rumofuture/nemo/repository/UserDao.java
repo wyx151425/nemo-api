@@ -13,4 +13,11 @@ public interface UserDao extends NemoDao<User, Integer> {
      * @return 目标对象
      */
     User findOneByMobilePhoneNumber(String mobilePhoneNumber);
+
+    /**
+     * 将用户存入缓存中
+     *
+     * @param user 目标用户
+     */
+    void saveCache(User user);
 }

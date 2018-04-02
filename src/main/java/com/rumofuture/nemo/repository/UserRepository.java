@@ -25,14 +25,8 @@ public class UserRepository implements UserDao {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(User user) {
-        if (null == user.getId()) {
             userMapper.insert(user);
-        } else if (null == user.getToken()) {
-            userCache.setOne(user);
-        } else {
-            userCache.setToken(user.getToken(), user.getId());
-            userCache.setOne(user);
-        }
+
     }
 
     @Override
@@ -67,5 +61,10 @@ public class UserRepository implements UserDao {
     @Override
     public User findOneByMobilePhoneNumber(String mobilePhoneNumber) {
         return userMapper.selectOneByMobilePhoneNumber(mobilePhoneNumber);
+    }
+
+    @Override
+    public void saveCache(User user) {
+        userCache.setToken(user.getToken(), user.getId());
     }
 }

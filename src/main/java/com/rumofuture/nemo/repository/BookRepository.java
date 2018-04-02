@@ -63,4 +63,9 @@ public class BookRepository implements BookDao {
     public List<Book> findListByAuthor(Integer authorId, PageModel pageModel) {
         return bookMapper.selectListByAuthor(authorId, pageModel);
     }
+
+    @Override
+    public List<Book> findListByStyle(String style, PageModel pageModel) {
+        return bookMapper.selectListByStyle(style, pageModel);
+    }
 }

@@ -30,6 +30,20 @@ public class UserServiceImpl implements UserService {
         if (null == targetUser) {
             user.setObjectId(Generator.getUUID());
             user.setStatus(1);
+            user.setEmail("");
+            user.setMotto("");
+            user.setProfile("");
+            user.setProfession("");
+            user.setLocation("");
+            user.setGender("");
+            user.setBirthday("");
+            user.setAge(0);
+            user.setFollow(0);
+            user.setFollower(0);
+            user.setFavorite(0);
+            user.setBook(0);
+            user.setAvatar("");
+            user.setPortrait("");
             user.setCreateAt(LocalDateTime.now().withNano(0));
             user.setUpdateAt(LocalDateTime.now().withNano(0));
             userRepository.save(user);
@@ -48,7 +62,7 @@ public class UserServiceImpl implements UserService {
             if (targetUser.getPassword().equals(user.getPassword())) {
                 String token = Generator.getToken();
                 targetUser.setToken(token);
-                userRepository.save(targetUser);
+                userRepository.saveCache(user);
                 return targetUser;
             } else {
                 throw new NemoException(RespStatus.USER_LOGIN_PASSWORD_ERROR);

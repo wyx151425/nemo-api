@@ -3,6 +3,7 @@ package com.rumofuture.nemo.repository;
 import com.rumofuture.nemo.model.domain.Page;
 import com.rumofuture.nemo.model.entity.PageModel;
 import com.rumofuture.nemo.repository.mapper.PageMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -46,6 +47,6 @@ public class PageRepository implements PageDao {
 
     @Override
     public List<Page> findListByBook(Integer bookId, PageModel pageModel) {
-        return null;
+        return pageMapper.selectListByBook(bookId, pageModel);
     }
 }

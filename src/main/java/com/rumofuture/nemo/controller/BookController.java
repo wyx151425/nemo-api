@@ -6,6 +6,8 @@ import com.rumofuture.nemo.model.entity.RequestBook;
 import com.rumofuture.nemo.model.entity.Response;
 import com.rumofuture.nemo.service.BookService;
 import com.rumofuture.nemo.util.constant.RespStatus;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +21,13 @@ import java.util.List;
 @RestController
 public class BookController extends NemoController {
 
+    private static final Log log = LogFactory.getLog(UserController.class);
+
     @Autowired
     private BookService bookService;
 
     @PostMapping(value = "books")
     Response<Book> actionSaveBook(@RequestBody Book book) {
-        bookService.save(book);
         try {
             bookService.save(book);
             return new Response<>(book);
@@ -43,7 +46,7 @@ public class BookController extends NemoController {
         }
     }
 
-    @PutMapping(value = "books/{id}")
+    @PutMapping(value = "books")
     Response<Book> actionUpdateBook(@RequestBody Book book) {
         try {
             bookService.update(book);
@@ -68,8 +71,15 @@ public class BookController extends NemoController {
 
     @GetMapping(value = "books")
     Response<List<Book>> actionQueryBookListByStyle(
-            @RequestParam(value = "style") String style
+            @RequestParam(value = "style") String style,
+            @RequestParam(value = "index") Integer index
     ) {
-        return null;
+        try {
+            List<Book> bookList = bookService.findListByStyle(style, index);
+            return new Response<>(bookList);
+        } catch (Exception e) {
+            log.error("BookController: actionQueryBookListByStyle", e);
+            throw new NemoException(RespStatus.QUERY_FAILED);
+        }
     }
 }

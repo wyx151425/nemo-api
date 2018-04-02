@@ -32,11 +32,19 @@ public class AccountController extends NemoController {
      * @param result 数据绑定结果对象
      * @return 响应对象
      */
-    @PostMapping(value = "user/register")
+    @PostMapping(value = "users/register")
     public Response<User> actionRegister(@Validated({User.Register.class}) @RequestBody User user, BindingResult result) {
         bindingResultInspect(result);
-        userService.register(user);
-        return new Response<>(RespStatus.SUCCESS);
+        try {
+            userService.register(user);
+            return new Response<>(user);
+        } catch (NemoException e) {
+            log.error("UserController: actionRegister", e);
+            throw e;
+        } catch (Exception e) {
+            log.error("UserController: actionRegister", e);
+            throw new NemoException(RespStatus.SYSTEM_ERROR);
+        }
     }
 
     /**
@@ -46,7 +54,7 @@ public class AccountController extends NemoController {
      * @param result      数据绑定结果对象
      * @return 响应对象
      */
-    @PostMapping(value = "user/login")
+    @PostMapping(value = "users/login")
     public Response<User> actionLogin(@Validated({User.Login.class}) @RequestBody User requestUser, BindingResult result) {
         bindingResultInspect(result);
         try {

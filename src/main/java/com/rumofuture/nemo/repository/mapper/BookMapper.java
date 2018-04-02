@@ -27,4 +27,16 @@ public interface BookMapper extends NemoMapper<Book, Integer> {
             @Param("authorId") Integer authorId,
             @Param("page") PageModel pageModel
     );
+
+    /**
+     * 根据漫画册风格查询漫画册
+     *
+     * @param style 风格
+     * @param pageModel 分页对象
+     * @return 目标对象
+     */
+    List<Book> selectListByStyle(
+            @Param("style") String style,
+            @Param("page") PageModel pageModel
+    );
 }

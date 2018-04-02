@@ -13,6 +13,7 @@ public class Response<T> {
     private T data;
 
     public Response() {
+        this.statusCode = RespStatus.SUCCESS;
     }
 
     public Response(int statusCode) {

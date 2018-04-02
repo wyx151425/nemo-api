@@ -24,7 +24,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void save(Book book) {
-
+        bookRepository.save(book);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findOne(Integer id) {
-        return null;
+        return bookRepository.findOne(id);
     }
 
     @Override
@@ -48,5 +48,13 @@ public class BookServiceImpl implements BookService {
         pageModel.setIndex(pageIndex);
         pageModel.setLimit(32);
         return bookRepository.findListByAuthor(userId, pageModel);
+    }
+
+    @Override
+    public List<Book> findListByStyle(String style, Integer pageIndex) {
+        PageModel pageModel = new PageModel();
+        pageModel.setIndex(pageIndex);
+        pageModel.setLimit(32);
+        return bookRepository.findListByStyle(style, pageModel);
     }
 }

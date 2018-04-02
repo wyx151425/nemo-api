@@ -19,4 +19,13 @@ public interface BookDao extends NemoDao<Book, Integer> {
      * @return 目标对象列表
      */
     List<Book> findListByAuthor(Integer authorId, PageModel pageModel);
+
+    /**
+     * 根据漫画册风格获取漫画册
+     *
+     * @param style 风格
+     * @param pageModel 分页模型
+     * @return 目标对象列表
+     */
+    List<Book> findListByStyle(String style, PageModel pageModel);
 }

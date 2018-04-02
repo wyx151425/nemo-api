@@ -28,4 +28,13 @@ public interface BookService {
      * @return 查询结果-列表数据
      */
     List<Book> findListByUser(Integer userId, Integer pageIndex);
+
+    /**
+     * 根据风格查询漫画册列表
+     *
+     * @param style 漫画册风格
+     * @param pageIndex 分页索引
+     * @return 查询结果-列表数据
+     */
+    List<Book> findListByStyle(String style, Integer pageIndex);
 }

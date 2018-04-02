@@ -36,5 +36,5 @@ public interface PageService {
      * @param bookId  漫画册ID
      * @return 漫画册包含的漫画分页列表
      */
-    List<Page> queryListByBook(Integer bookId);
+    List<Page> queryListByBook(Integer bookId, Integer index);
 }

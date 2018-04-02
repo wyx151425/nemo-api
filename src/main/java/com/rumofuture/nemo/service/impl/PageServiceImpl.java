@@ -1,6 +1,7 @@
 package com.rumofuture.nemo.service.impl;
 
 import com.rumofuture.nemo.model.domain.Page;
+import com.rumofuture.nemo.model.entity.PageModel;
 import com.rumofuture.nemo.repository.PageRepository;
 import com.rumofuture.nemo.service.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +28,20 @@ public class PageServiceImpl implements PageService {
 
     @Override
     public Page update(Page page) {
-        return null;
+        pageRepository.update(page);
+        return page;
     }
 
     @Override
     public void delete(Integer id) {
-
+        pageRepository.delete(id);
     }
 
     @Override
-    public List<Page> queryListByBook(Integer bookId) {
-        return null;
+    public List<Page> queryListByBook(Integer bookId, Integer index) {
+        PageModel model = new PageModel();
+        model.setIndex(index);
+        model.setLimit(64);
+        return pageRepository.findListByBook(bookId, model);
     }
 }

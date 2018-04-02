@@ -24,7 +24,7 @@
         <set>
             <if test="status != null">status = #{status},</if>
             <if test="imageUrl != null">image_url = #{imageUrl},</if>
-            update_at = NOW()
+            <if test="updateAt != null">update_at = #{updateAt}</if>
         </set>
         WHERE id = #{id}
     </update>

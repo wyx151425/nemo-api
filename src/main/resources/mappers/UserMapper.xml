@@ -20,18 +20,26 @@
         <result column="gender" property="gender"/>
         <result column="birthday" property="birthday"/>
         <result column="age" property="age"/>
-        <result column="follow_total" property="followTotal"/>
-        <result column="follower_total" property="followerTotal"/>
-        <result column="favorite_total" property="favoriteTotal"/>
-        <result column="book_total" property="bookTotal"/>
-        <result column="avatar_url" property="avatarUrl"/>
-        <result column="portrait_url" property="portraitUrl"/>
+        <result column="follow" property="follow"/>
+        <result column="follower" property="follower"/>
+        <result column="favorite" property="favorite"/>
+        <result column="book" property="book"/>
+        <result column="avatar" property="avatar"/>
+        <result column="portrait" property="portrait"/>
     </resultMap>
 
     <!-- 保存 -->
     <insert id="insert" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO user(object_id, name, status, mobile_phone_number, password, create_at, update_at, age, follow_total, follower_total, favorite_total, book_total)
-        VALUES(#{objectId}, #{name}, #{status}, #{mobilePhoneNumber}, #{password}, NOW(), NOW(), 0, 0, 0, 0, 0)
+        INSERT INTO user(
+            object_id, name, status, mobile_phone_number, password, create_at, update_at,
+            email, motto, profile, profession, location, gender, birthday,
+            age, follow, follower, favorite, book, avatar, portrait
+        )
+        VALUES(
+            #{objectId}, #{name}, #{status}, #{mobilePhoneNumber}, #{password}, #{createAt}, #{updateAt},
+            #{email}, #{motto}, #{profile}, #{profession}, #{location}, #{gender}, #{birthday},
+            #{age}, #{follow}, #{follower}, #{favorite}, #{book}, #{avatar}, #{portrait}
+        )
     </insert>
 
     <!-- 更新 -->
@@ -55,7 +63,7 @@
             <if test="bookTotal != null">book_total = #{bookTotal},</if>
             <if test="avatarUrl != null">avatar_url = #{avatarUrl},</if>
             <if test="portraitUrl != null">portrait_url = #{portraitUrl},</if>
-            update_at = NOW()
+            <if test="updateAt != null">update_at = #{updateAt}</if>
         </set>
         WHERE id = #{id}
     </update>

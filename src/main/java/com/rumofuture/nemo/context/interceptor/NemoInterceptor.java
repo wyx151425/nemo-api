@@ -21,8 +21,8 @@ public class NemoInterceptor implements HandlerInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(NemoInterceptor.class);
 
-    private static final String USER_REGISTER_URI = "%s/user/register";
-    private static final String USER_LOGIN_URI = "%s/user/login";
+    private static final String USER_REGISTER_URI = "%s/users/register";
+    private static final String USER_LOGIN_URI = "%s/users/login";
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
