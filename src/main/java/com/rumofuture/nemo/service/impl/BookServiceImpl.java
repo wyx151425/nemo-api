@@ -6,9 +6,13 @@ import com.rumofuture.nemo.model.entity.PageModel;
 import com.rumofuture.nemo.repository.BookRepository;
 import com.rumofuture.nemo.service.BookService;
 import com.rumofuture.nemo.util.constant.RespStatus;
+import com.rumofuture.nemo.util.generator.Generator;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.GenericArrayType;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -24,6 +28,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void save(Book book) {
+        book.setObjectId(Generator.getUUID());
+        book.setStatus(1);
+        book.setCreateAt(LocalDateTime.now().withNano(0));
+        book.setUpdateAt(LocalDateTime.now().withNano(0));
+        book.setPage(0);
+        book.setFavor(0);
         bookRepository.save(book);
     }
 
@@ -34,6 +44,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void update(Book book) {
+        book.setUpdateAt(LocalDateTime.now().withNano(0));
+        book.setStatus(2);
         bookRepository.update(book);
     }
 
@@ -43,11 +55,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findListByUser(Integer userId, Integer pageIndex) {
+    public List<Book> findListByUser(Integer userId, Integer pageIndex, Boolean own) {
         PageModel pageModel = new PageModel();
         pageModel.setIndex(pageIndex);
         pageModel.setLimit(32);
-        return bookRepository.findListByAuthor(userId, pageModel);
+        return bookRepository.findListByAuthor(userId, pageModel, own);
     }
 
     @Override

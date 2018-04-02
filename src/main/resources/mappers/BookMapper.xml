@@ -12,10 +12,10 @@
         <result column="name" property="name"/>
         <result column="style" property="style"/>
         <result column="introduction" property="introduction"/>
-        <result column="source_url" property="sourceUrl"/>
-        <result column="cover_url" property="coverUrl"/>
-        <result column="page_total" property="pageTotal"/>
-        <result column="favor_total" property="favorTotal"/>
+        <result column="source" property="source"/>
+        <result column="cover" property="cover"/>
+        <result column="page" property="page"/>
+        <result column="favor" property="favor"/>
         <result column="type" property="type"/>
         <result column="open" property="open"/>
         <result column="copyright" property="copyright"/>
@@ -25,10 +25,10 @@
     <insert id="insert" parameterType="book" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO book(
             object_id, status, create_at, update_at, author_id, name, style, introduction,
-            source_url, cover_url, page_total, favor_total, type, open, copyright)
+            source, cover, page, favor, type, publish, copyright)
         VALUES(
             #{objectId}, #{status}, #{createAt}, #{updateAt}, #{author.id}, #{name}, #{style}, #{introduction},
-            #{sourceUrl}, #{coverUrl}, #{pageTotal}, #{favorTotal}, #{type}, #{open}, #{copyright})
+            #{source}, #{cover}, #{page}, #{favor}, #{type}, #{publish}, #{copyright})
     </insert>
 
     <!-- 更新 -->
@@ -39,14 +39,14 @@
             <if test="name != null">name = #{name},</if>
             <if test="style != null">style = #{style},</if>
             <if test="introduction != null">introduction = #{introduction},</if>
-            <if test="sourceUrl != null">source_url = #{sourceUrl},</if>
-            <if test="coverUrl != null">cover_url = #{coverUrl},</if>
-            <if test="pageTotal != null">page_total = #{pageTotal},</if>
-            <if test="favorTotal != null">favor_total = #{favorTotal},</if>
+            <if test="source != null">source = #{source},</if>
+            <if test="cover != null">cover = #{cover},</if>
+            <if test="page != null">page = #{page},</if>
+            <if test="favor != null">favor = #{favor},</if>
             <if test="type != null">type = #{type},</if>
-            <if test="open != null"> = #{open},</if>
-            <if test="copyright != null"> = #{copyright},</if>
-            update_at = NOW()
+            <if test="publish != null">publish = #{publish},</if>
+            <if test="copyright != null">copyright = #{copyright},</if>
+            <if test="updateAt != null">update_at = #{updateAt}</if>
         </set>
         WHERE id = #{id}
     </update>
@@ -63,12 +63,17 @@
 
     <!-- 查找漫画册列表 -->
     <select id="selectList" parameterType="pageModel" resultMap="bookMap">
-        SELECT * FROM user WHERE status > 0 ORDER BY id ASC LIMIT #{index}, #{limit}
+        SELECT * FROM user WHERE status = 3 ORDER BY id ASC LIMIT #{index}, #{limit}
     </select>
 
     <!-- 根据漫画册作者ID查找 -->
     <select id="selectListByAuthor" resultMap="bookMap">
-        SELECT * FROM book WHERE author_id = #{authorId} AND status > 0
+        SELECT * FROM book WHERE author_id = #{authorId}
+        <choose>
+            <when test="own == false">AND status = 3</when>
+            <when test="own == true">AND status BETWEEN 1 AND 3</when>
+            <otherwise>AND status = 3</otherwise>
+        </choose>
         ORDER BY id ASC LIMIT #{page.index}, #{page.limit}
     </select>
 

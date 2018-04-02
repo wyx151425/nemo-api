@@ -34,4 +34,9 @@ public class UserCache {
         String key = TOKEN + token;
         nemoCache.set(key, String.valueOf(id));
     }
+
+    public Integer getToken(String token) {
+        String key = TOKEN + token;
+        return Integer.valueOf(nemoCache.get(key));
+    }
 }

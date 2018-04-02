@@ -66,5 +66,6 @@ public class UserRepository implements UserDao {
     @Override
     public void saveCache(User user) {
         userCache.setToken(user.getToken(), user.getId());
+        userCache.setOne(user);
     }
 }

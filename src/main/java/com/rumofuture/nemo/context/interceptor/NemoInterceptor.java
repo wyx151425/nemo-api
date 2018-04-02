@@ -6,6 +6,7 @@ import com.rumofuture.nemo.util.constant.NemoConst;
 import com.rumofuture.nemo.util.constant.RespStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

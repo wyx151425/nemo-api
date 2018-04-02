@@ -12,7 +12,7 @@ CREATE TABLE user
 
   email               VARCHAR(64),
   motto               VARCHAR(256),
-  profile             TEXT,
+  profile             VARCHAR(1024),
   profession          VARCHAR(128),
   location            VARCHAR(128),
 
@@ -45,14 +45,14 @@ CREATE TABLE book
   name         VARCHAR(64),
   style        VARCHAR(32),
   introduction TEXT,
-  url   VARCHAR(256),
+  source   VARCHAR(256),
   cover    VARCHAR(256),
 
   page   INT(11) DEFAULT 0,
   favor  INT(11) DEFAULT 0,
 
   type         INT(1),
-  open         BOOLEAN,
+  publish         BOOLEAN,
   copyright    BOOLEAN,
   PRIMARY KEY (id)
 )

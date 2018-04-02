@@ -56,12 +56,12 @@ public class BookRepository implements BookDao {
 
     @Override
     public List<Book> findList(PageModel pageModel) {
-        return null;
+        return bookMapper.selectList(pageModel);
     }
 
     @Override
-    public List<Book> findListByAuthor(Integer authorId, PageModel pageModel) {
-        return bookMapper.selectListByAuthor(authorId, pageModel);
+    public List<Book> findListByAuthor(Integer authorId, PageModel pageModel, Boolean own) {
+        return bookMapper.selectListByAuthor(authorId, pageModel, own);
     }
 
     @Override

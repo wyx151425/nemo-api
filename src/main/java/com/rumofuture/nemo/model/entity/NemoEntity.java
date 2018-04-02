@@ -1,5 +1,7 @@
 package com.rumofuture.nemo.model.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -24,10 +26,12 @@ public class NemoEntity implements Serializable {
     /**
      * 创建时间
      */
+    @DateTimeFormat
     private LocalDateTime createAt;
     /**
      * 更新时间
      */
+    @DateTimeFormat
     private LocalDateTime updateAt;
 
     public NemoEntity() {

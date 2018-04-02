@@ -25,7 +25,8 @@ public interface BookMapper extends NemoMapper<Book, Integer> {
      */
     List<Book> selectListByAuthor(
             @Param("authorId") Integer authorId,
-            @Param("page") PageModel pageModel
+            @Param("page") PageModel pageModel,
+            @Param("own") Boolean own
     );
 
     /**

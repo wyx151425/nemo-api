@@ -27,7 +27,7 @@ public interface BookService {
      * @param pageIndex 分页索引
      * @return 查询结果-列表数据
      */
-    List<Book> findListByUser(Integer userId, Integer pageIndex);
+    List<Book> findListByUser(Integer userId, Integer pageIndex, Boolean own);
 
     /**
      * 根据风格查询漫画册列表

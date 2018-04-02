@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
             if (targetUser.getPassword().equals(user.getPassword())) {
                 String token = Generator.getToken();
                 targetUser.setToken(token);
-                userRepository.saveCache(user);
+                userRepository.saveCache(targetUser);
                 return targetUser;
             } else {
                 throw new NemoException(RespStatus.USER_LOGIN_PASSWORD_ERROR);

@@ -2,10 +2,12 @@ package com.rumofuture.nemo.model.domain;
 
 import com.rumofuture.nemo.model.entity.NemoEntity;
 
+import java.io.Serializable;
+
 /**
  * @author 王振琦 2017/1/29
  */
-public class Page extends NemoEntity {
+public class Page extends NemoEntity implements Serializable {
     /**
      * 所属漫画册
      */
@@ -13,7 +15,7 @@ public class Page extends NemoEntity {
     /**
      * 图像URL
      */
-    private String imageUrl;
+    private String image;
 
     public Book getBook() {
         return book;
@@ -23,11 +25,11 @@ public class Page extends NemoEntity {
         this.book = book;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

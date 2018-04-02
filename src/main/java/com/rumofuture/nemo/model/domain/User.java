@@ -5,11 +5,12 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 
 /**
  * @author 王振琦 2016/12/24
  */
-public class User extends NemoEntity {
+public class User extends NemoEntity implements Serializable {
     /**
      * 注册验证接口
      */

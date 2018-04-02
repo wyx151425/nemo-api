@@ -2,7 +2,7 @@ package com.rumofuture.nemo.controller;
 
 import com.rumofuture.nemo.context.exception.NemoException;
 import com.rumofuture.nemo.model.domain.Book;
-import com.rumofuture.nemo.model.entity.RequestBook;
+import com.rumofuture.nemo.model.domain.User;
 import com.rumofuture.nemo.model.entity.Response;
 import com.rumofuture.nemo.service.BookService;
 import com.rumofuture.nemo.util.constant.RespStatus;
@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 public class BookController extends NemoController {
 
-    private static final Log log = LogFactory.getLog(UserController.class);
+    private static final Log log = LogFactory.getLog(BookController.class);
 
     @Autowired
     private BookService bookService;
@@ -29,9 +29,12 @@ public class BookController extends NemoController {
     @PostMapping(value = "books")
     Response<Book> actionSaveBook(@RequestBody Book book) {
         try {
+            User user = getUser();
+            book.setAuthor(user);
             bookService.save(book);
             return new Response<>(book);
         } catch (Exception e) {
+            log.error("BookController: actionSaveBook", e);
             throw new NemoException(RespStatus.SYSTEM_ERROR);
         }
     }
@@ -42,6 +45,7 @@ public class BookController extends NemoController {
             bookService.delete(id);
             return new Response<>(RespStatus.SUCCESS);
         } catch (Exception e) {
+            log.error("BookController: actionDeleteBook", e);
             throw new NemoException(RespStatus.DELETE_FAILED);
         }
     }
@@ -50,8 +54,9 @@ public class BookController extends NemoController {
     Response<Book> actionUpdateBook(@RequestBody Book book) {
         try {
             bookService.update(book);
-            return new Response<>(RespStatus.SUCCESS);
+            return new Response<>();
         } catch (Exception e) {
+            log.error("BookController: actionUpdateBook", e);
             throw new NemoException(RespStatus.UPDATE_FAILED);
         }
     }
@@ -59,12 +64,14 @@ public class BookController extends NemoController {
     @GetMapping(value = "users/{id}/books")
     Response<List<Book>> actionQueryBookListByAuthor(
             @PathVariable(value = "id") Integer id,
-            @RequestParam(value = "index") Integer index
+            @RequestParam(value = "index") Integer index,
+            @RequestParam(value = "own") Boolean own
     ) {
         try {
-            List<Book> bookList = bookService.findListByUser(id, index);
+            List<Book> bookList = bookService.findListByUser(id, index, own);
             return new Response<>(bookList);
         } catch (Exception e) {
+            log.error("BookController: actionQueryBookListByAuthor", e);
             throw new NemoException(RespStatus.QUERY_FAILED);
         }
     }

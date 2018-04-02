@@ -2,10 +2,15 @@ package com.rumofuture.nemo.model.domain;
 
 import com.rumofuture.nemo.model.entity.NemoEntity;
 
+import java.io.Serializable;
+
 /**
  * @author 王振琦 2016/12/24
  */
-public class Book extends NemoEntity {
+public class Book extends NemoEntity implements Serializable {
+    /**
+     * status 0-删除 1-新建未审核 2-修改未审核 3-审核通过允许展示
+     */
     /**
      * 所属漫画作者
      */
@@ -25,19 +30,19 @@ public class Book extends NemoEntity {
     /**
      * 资源路径
      */
-    private String sourceUrl;
+    private String source;
     /**
      * 漫画册封面路径
      */
-    private String coverUrl;
+    private String cover;
     /**
      * 漫画册漫画分页数
      */
-    private Integer pageTotal;
+    private Integer page;
     /**
      * 收藏此漫画的用户数
      */
-    private Integer favorTotal;
+    private Integer favor;
     /**
      * 漫画册类型（0本地/1网页链接）
      */
@@ -83,36 +88,36 @@ public class Book extends NemoEntity {
         this.introduction = introduction;
     }
 
-    public String getSourceUrl() {
-        return sourceUrl;
+    public String getSource() {
+        return source;
     }
 
-    public void setSourceUrl(String sourceUrl) {
-        this.sourceUrl = sourceUrl;
+    public void setSource(String source) {
+        this.source = source;
     }
 
-    public String getCoverUrl() {
-        return coverUrl;
+    public String getCover() {
+        return cover;
     }
 
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrl = coverUrl;
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
-    public Integer getPageTotal() {
-        return pageTotal;
+    public Integer getPage() {
+        return page;
     }
 
-    public void setPageTotal(Integer pageTotal) {
-        this.pageTotal = pageTotal;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
-    public Integer getFavorTotal() {
-        return favorTotal;
+    public Integer getFavor() {
+        return favor;
     }
 
-    public void setFavorTotal(Integer favorTotal) {
-        this.favorTotal = favorTotal;
+    public void setFavor(Integer favor) {
+        this.favor = favor;
     }
 
     public Integer getType() {
