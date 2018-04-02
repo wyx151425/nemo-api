@@ -46,7 +46,7 @@ public class PageRepository implements PageDao {
     }
 
     @Override
-    public List<Page> findListByBook(Integer bookId, PageModel pageModel) {
+    public List<Page> findListByBook(@Param("bookId") Integer bookId, @Param("pageModel") PageModel pageModel) {
         return pageMapper.selectListByBook(bookId, pageModel);
     }
 }

@@ -4,9 +4,11 @@ import com.rumofuture.nemo.model.domain.Page;
 import com.rumofuture.nemo.model.entity.PageModel;
 import com.rumofuture.nemo.repository.PageRepository;
 import com.rumofuture.nemo.service.PageService;
+import com.rumofuture.nemo.util.generator.Generator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -22,6 +24,10 @@ public class PageServiceImpl implements PageService {
 
     @Override
     public Page save(Page page) {
+        page.setObjectId(Generator.getUUID());
+        page.setStatus(1);
+        page.setCreateAt(LocalDateTime.now().withNano(0));
+        page.setUpdateAt(LocalDateTime.now().withNano(0));
         pageRepository.save(page);
         return page;
     }

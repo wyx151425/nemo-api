@@ -41,12 +41,12 @@
 
     <!-- 查找漫画分页列表 -->
     <select id="selectList" parameterType="pageModel" resultMap="pageMap">
-        SELECT * FROM page WHERE status > 0 ORDER BY id ASC LIMIT #{index}, #{limit}
+        SELECT * FROM page WHERE status = 1 ORDER BY id ASC LIMIT #{index}, #{limit}
     </select>
 
     <!-- 根据漫画册查找漫画分页列表 -->
     <select id="selectListByBook" resultMap="pageMap">
-        SELECT * FROM page WHERE book_id = #{bookId} AND status > 0
+        SELECT * FROM page WHERE book_id = #{bookId} AND status = 1
         ORDER BY id LIMIT #{pageModel.index}, #{pageModel.limit}
     </select>
 </mapper>
