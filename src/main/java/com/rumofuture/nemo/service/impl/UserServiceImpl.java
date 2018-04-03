@@ -5,6 +5,7 @@ import com.rumofuture.nemo.model.domain.User;
 import com.rumofuture.nemo.model.entity.PageModel;
 import com.rumofuture.nemo.repository.UserRepository;
 import com.rumofuture.nemo.service.UserService;
+import com.rumofuture.nemo.util.constant.NemoConst;
 import com.rumofuture.nemo.util.constant.RespStatus;
 import com.rumofuture.nemo.util.generator.Generator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,9 +82,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findAuthorList(Integer index) {
-        PageModel pageModel = new PageModel();
-        pageModel.setIndex(index);
-        pageModel.setLimit(32);
+        PageModel pageModel = new PageModel(index, NemoConst.PageModel.Limit.USER);
         return userRepository.findAuthorList(pageModel);
     }
 }

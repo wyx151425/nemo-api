@@ -28,4 +28,12 @@ public class NemoConst {
     public static class Cache {
         public static final String SEPARATOR = ":";
     }
+
+    public static class PageModel {
+        public static class Limit {
+            public static final int USER = 32;
+            public static final int BOOK = 32;
+            public static final int PAGE = 64;
+        }
+    }
 }

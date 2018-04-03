@@ -2,9 +2,12 @@ package com.rumofuture.nemo.service.impl;
 
 import com.rumofuture.nemo.context.exception.NemoException;
 import com.rumofuture.nemo.model.domain.Book;
+import com.rumofuture.nemo.model.domain.User;
 import com.rumofuture.nemo.model.entity.PageModel;
 import com.rumofuture.nemo.repository.BookRepository;
+import com.rumofuture.nemo.repository.UserRepository;
 import com.rumofuture.nemo.service.BookService;
+import com.rumofuture.nemo.util.constant.NemoConst;
 import com.rumofuture.nemo.util.constant.RespStatus;
 import com.rumofuture.nemo.util.generator.Generator;
 import org.apache.tomcat.jni.Local;
@@ -27,6 +30,9 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(Book book) {
@@ -37,6 +43,11 @@ public class BookServiceImpl implements BookService {
         book.setPage(0);
         book.setFavor(0);
         bookRepository.save(book);
+        // 更新用户的漫画册数目
+        User user = book.getAuthor();
+        int newBookTotal = user.getBook() + 1;
+        user.setBook(newBookTotal);
+        userRepository.update(user);
     }
 
     @Override
@@ -60,17 +71,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> findListByUser(Integer userId, Integer pageIndex, Boolean own) {
-        PageModel pageModel = new PageModel();
-        pageModel.setIndex(pageIndex);
-        pageModel.setLimit(32);
+        PageModel pageModel = new PageModel(pageIndex, NemoConst.PageModel.Limit.BOOK);
         return bookRepository.findListByAuthor(userId, pageModel, own);
     }
 
     @Override
     public List<Book> findListByStyle(String style, Integer pageIndex) {
-        PageModel pageModel = new PageModel();
-        pageModel.setIndex(pageIndex);
-        pageModel.setLimit(32);
+        PageModel pageModel = new PageModel(pageIndex, NemoConst.PageModel.Limit.BOOK);
         return bookRepository.findListByStyle(style, pageModel);
     }
 }

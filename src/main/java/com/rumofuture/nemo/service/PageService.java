@@ -13,16 +13,14 @@ public interface PageService {
     /**
      * 保存方法
      * @param page 目标对象
-     * @return 包含ID的目标对象
      */
-    Page save(Page page);
+    void save(Page page);
 
     /**
      * 更新方法
      * @param page 目标对象
-     * @return 更新后的目标对象
      */
-    Page update(Page page);
+    void update(Page page);
 
     /**
      * 删除方法
