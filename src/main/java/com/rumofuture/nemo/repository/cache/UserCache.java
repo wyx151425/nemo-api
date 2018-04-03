@@ -30,6 +30,11 @@ public class UserCache {
         return JSON.parseObject(value, User.class);
     }
 
+    public Boolean deleteOne(Integer id) {
+        String key = USER + id;
+        return nemoCache.delete(key);
+    }
+
     public void setToken(String token, Integer id) {
         String key = TOKEN + token;
         nemoCache.set(key, String.valueOf(id));

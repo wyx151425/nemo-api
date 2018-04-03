@@ -2,12 +2,14 @@ package com.rumofuture.nemo.service.impl;
 
 import com.rumofuture.nemo.context.exception.NemoException;
 import com.rumofuture.nemo.model.domain.User;
+import com.rumofuture.nemo.model.entity.PageModel;
 import com.rumofuture.nemo.repository.UserRepository;
 import com.rumofuture.nemo.service.UserService;
 import com.rumofuture.nemo.util.constant.RespStatus;
 import com.rumofuture.nemo.util.generator.Generator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,6 +27,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public User register(User user) {
         User targetUser = userRepository.findOneByMobilePhoneNumber(user.getMobilePhoneNumber());
         if (null == targetUser) {
@@ -71,12 +74,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void update(User user) {
-
+        userRepository.update(user);
     }
 
     @Override
     public List<User> findAuthorList(Integer index) {
-        return null;
+        PageModel pageModel = new PageModel();
+        pageModel.setIndex(index);
+        pageModel.setLimit(32);
+        return userRepository.findAuthorList(pageModel);
     }
 }

@@ -9,13 +9,13 @@
         <result property="status" column="status"/>
         <result property="createAt" column="create_at"/>
         <result property="updateAt" column="update_at"/>
-        <result property="imageUrl" column="image_url"/>
+        <result property="image" column="image"/>
     </resultMap>
 
     <!-- 保存 -->
     <insert id="insert" parameterType="page" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO page(object_id, status, create_at, update_at, image_url, book_id)
-        VALUES(#{objectId}, #{status}, NOW(), NOW(), #{imageUrl}, #{book.id})
+        INSERT INTO page(object_id, status, create_at, update_at, image, book_id)
+        VALUES(#{objectId}, #{status}, #{createAt}, #{updateAt}, #{image}, #{book.id})
     </insert>
 
     <!-- 更新 -->

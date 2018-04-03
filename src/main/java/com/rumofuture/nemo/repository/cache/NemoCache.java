@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 @Repository(value = "nemoCache")
 public class NemoCache {
 
-    private static final long DEFAULT_TIMEOUT = 7 * 24 * 60 * 60;
+    private static final long DEFAULT_TIMEOUT = 24 * 60 * 60;
 
     @Autowired
     private StringRedisTemplate redisTemplate;

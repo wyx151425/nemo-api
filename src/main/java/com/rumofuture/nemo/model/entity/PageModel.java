@@ -11,6 +11,14 @@ public class PageModel {
     private int count;
     private int total;
 
+    public PageModel() {
+    }
+
+    public PageModel(int index, int limit) {
+        this.index = index;
+        this.limit = limit;
+    }
+
     public int getIndex() {
         return index;
     }

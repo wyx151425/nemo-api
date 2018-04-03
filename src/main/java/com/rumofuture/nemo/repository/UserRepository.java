@@ -23,25 +23,22 @@ public class UserRepository implements UserDao {
     private UserCache userCache;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public void save(User user) {
-            userMapper.insert(user);
-
+        userMapper.insert(user);
+        userCache.setOne(user);
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public void update(User user) {
         userMapper.update(user);
+        userCache.deleteOne(user.getId());
+        userCache.setOne(user);
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public void delete(Integer id) {
-        User user = new User();
-        user.setId(id);
-        user.setStatus(0);
-        userMapper.update(user);
+        userMapper.delete(id);
+        userCache.deleteOne(id);
     }
 
     @Override
@@ -67,5 +64,10 @@ public class UserRepository implements UserDao {
     public void saveCache(User user) {
         userCache.setToken(user.getToken(), user.getId());
         userCache.setOne(user);
+    }
+
+    @Override
+    public List<User> findAuthorList(PageModel pageModel) {
+        return userMapper.selectAuthorList(pageModel);
     }
 }

@@ -10,6 +10,7 @@ import com.rumofuture.nemo.util.generator.Generator;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.GenericArrayType;
 import java.time.LocalDateTime;
@@ -27,6 +28,7 @@ public class BookServiceImpl implements BookService {
     private BookRepository bookRepository;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void save(Book book) {
         book.setObjectId(Generator.getUUID());
         book.setStatus(1);
@@ -38,11 +40,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void delete(Integer id) {
         bookRepository.delete(id);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void update(Book book) {
         book.setUpdateAt(LocalDateTime.now().withNano(0));
         book.setStatus(2);

@@ -24,14 +24,12 @@ public class BookRepository implements BookDao {
     private BookCache bookCache;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public void save(Book book) {
         bookMapper.insert(book);
         bookCache.setOne(book);
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public void update(Book book) {
         bookMapper.update(book);
         bookCache.deleteOne(book.getId());
@@ -39,7 +37,6 @@ public class BookRepository implements BookDao {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public void delete(Integer id) {
         bookMapper.delete(id);
         bookCache.deleteOne(id);
@@ -49,7 +46,8 @@ public class BookRepository implements BookDao {
     public Book findOne(Integer id) {
         Book book = bookCache.getOne(id);
         if (null == book) {
-            return bookMapper.selectOne(id);
+            book = bookMapper.selectOne(id);
+            bookCache.setOne(book);
         }
         return book;
     }

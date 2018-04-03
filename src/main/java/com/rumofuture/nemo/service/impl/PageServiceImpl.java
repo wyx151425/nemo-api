@@ -1,12 +1,15 @@
 package com.rumofuture.nemo.service.impl;
 
+import com.rumofuture.nemo.model.domain.Book;
 import com.rumofuture.nemo.model.domain.Page;
 import com.rumofuture.nemo.model.entity.PageModel;
+import com.rumofuture.nemo.repository.BookRepository;
 import com.rumofuture.nemo.repository.PageRepository;
 import com.rumofuture.nemo.service.PageService;
 import com.rumofuture.nemo.util.generator.Generator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,8 +25,14 @@ public class PageServiceImpl implements PageService {
     @Autowired
     private PageRepository pageRepository;
 
+    @Autowired
+    private BookRepository bookRepository;
+
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Page save(Page page) {
+        Book book = bookRepository.findOne(page.getBook().getId());
+        page.setBook(book);
         page.setObjectId(Generator.getUUID());
         page.setStatus(1);
         page.setCreateAt(LocalDateTime.now().withNano(0));
@@ -33,12 +42,14 @@ public class PageServiceImpl implements PageService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Page update(Page page) {
         pageRepository.update(page);
         return page;
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void delete(Integer id) {
         pageRepository.delete(id);
     }
