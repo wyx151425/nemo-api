@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @author  王振琦  2018/1/7
  */
 @Repository(value = "bookCache")
-public class BookCache {
+public class BookCache  {
 
     private static final String BOOK = NemoConst.BOOK + NemoConst.Cache.SEPARATOR;
     private static final int TIMEOUT = 3 * 60 * 60;

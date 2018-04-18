@@ -1,6 +1,5 @@
 package com.rumofuture.nemo.service.impl;
 
-import com.rumofuture.nemo.context.exception.NemoException;
 import com.rumofuture.nemo.model.domain.Book;
 import com.rumofuture.nemo.model.domain.User;
 import com.rumofuture.nemo.model.entity.PageModel;
@@ -8,14 +7,11 @@ import com.rumofuture.nemo.repository.BookRepository;
 import com.rumofuture.nemo.repository.UserRepository;
 import com.rumofuture.nemo.service.BookService;
 import com.rumofuture.nemo.util.constant.NemoConst;
-import com.rumofuture.nemo.util.constant.RespStatus;
 import com.rumofuture.nemo.util.generator.Generator;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.GenericArrayType;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -70,14 +66,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findListByUser(Integer userId, Integer pageIndex, Boolean own) {
-        PageModel pageModel = new PageModel(pageIndex, NemoConst.PageModel.Limit.BOOK);
+    public List<Book> findListByUser(Integer userId, Integer index, Boolean own) {
+        PageModel pageModel = new PageModel(index, NemoConst.PageModel.Limit.BOOK);
         return bookRepository.findListByAuthor(userId, pageModel, own);
     }
 
     @Override
-    public List<Book> findListByStyle(String style, Integer pageIndex) {
-        PageModel pageModel = new PageModel(pageIndex, NemoConst.PageModel.Limit.BOOK);
+    public List<Book> findListByStyle(String style, Integer index) {
+        PageModel pageModel = new PageModel(index, NemoConst.PageModel.Limit.BOOK);
         return bookRepository.findListByStyle(style, pageModel);
     }
 }

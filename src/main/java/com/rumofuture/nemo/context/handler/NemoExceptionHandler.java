@@ -20,7 +20,6 @@ public class NemoExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public Response<Object> handleException(Exception e) {
-        log.error("System Error", e);
         return new Response<>(RespStatus.SYSTEM_ERROR);
     }
 

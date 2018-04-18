@@ -4,6 +4,9 @@ server:
     context-path: /nemo
 
 spring:
+  thymeleaf:
+    cache: false
+    mode: HTML
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/nemo?characterEncoding=utf-8

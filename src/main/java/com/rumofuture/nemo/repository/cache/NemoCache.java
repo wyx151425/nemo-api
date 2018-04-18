@@ -1,6 +1,8 @@
 package com.rumofuture.nemo.repository.cache;
 
+import javafx.animation.KeyValue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.keyvalue.repository.KeyValueRepository;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Repository;
 

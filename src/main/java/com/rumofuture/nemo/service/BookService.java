@@ -24,17 +24,17 @@ public interface BookService {
     /**
      * 根据用户id查询漫画册列表
      * @param userId 用户id
-     * @param pageIndex 分页索引
+     * @param index 分页索引
      * @return 查询结果-列表数据
      */
-    List<Book> findListByUser(Integer userId, Integer pageIndex, Boolean own);
+    List<Book> findListByUser(Integer userId, Integer index, Boolean own);
 
     /**
      * 根据风格查询漫画册列表
      *
      * @param style 漫画册风格
-     * @param pageIndex 分页索引
+     * @param index 分页索引
      * @return 查询结果-列表数据
      */
-    List<Book> findListByStyle(String style, Integer pageIndex);
+    List<Book> findListByStyle(String style, Integer index);
 }
